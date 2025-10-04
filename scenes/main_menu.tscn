@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7mg2prutmhdb"]
+
+[ext_resource type="Script" uid="uid://c8v8bgvqscwbj" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Theme" uid="uid://bm77tr0r4mkbg" path="res://assets/default.tres" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://bbyoboyy756l3" path="res://assets/icons/music_off.svg" id="3_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cgeuk7resgh73" path="res://assets/icons/music_on.svg" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://djgy2hjenbk6u" path="res://assets/icons/sound_off.svg" id="5_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://buvpun6kie12t" path="res://assets/icons/sound_on.svg" id="6_jk1qb"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_oa1go")
+script = ExtResource("1_rtw2f")
+
+[node name="MainButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -63.0
+offset_right = 103.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "Play"
+
+[node name="TutorialButton" type="Button" parent="MainButtons"]
+layout_mode = 2
+text = "Tutorial"
+
+[node name="SoundButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -52.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="ToggleMusic" type="CheckButton" parent="SoundButtons"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("3_rtw2f")
+theme_override_icons/unchecked = ExtResource("4_oa1go")
+alignment = 2
+
+[node name="ToggleSFX" type="CheckButton" parent="SoundButtons"]
+layout_mode = 2
+theme_override_icons/checked = ExtResource("5_tbmy8")
+theme_override_icons/unchecked = ExtResource("6_jk1qb")
+alignment = 2
