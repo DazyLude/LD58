@@ -15,6 +15,9 @@ var held : bool = false;
 @onready var sprite : Sprite2D = $Sprite2D;
 @export var item_name : String = PLACEHOLDER_NAME;
 
+@export var weight : float = 1.0;
+@export var can_be_dropped : bool = true;
+
 
 func _ready() -> void:
 	$Area2D.mouse_entered.connect(_on_hover);

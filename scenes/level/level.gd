@@ -2,9 +2,11 @@ extends Node2D
 class_name Level
 
 
-const RUN_SPEED := 50.0;
+const RUN_SPEED := 75.0;
+const ITEM_DROP_INTERVAL := 0.5;
 
 var character_pckd : PackedScene = preload("res://scenes/character.tscn");
+var frogbert_pckd : PackedScene = preload("res://scenes/characters/frogbert.tscn");
 
 @onready
 var player_root : Node2D = $Player;
@@ -20,6 +22,7 @@ var in_battle : bool = false;
 
 @onready
 var inventory : LevelInventoryDisplay = $UI/Inventory;
+var inventory_tween : Tween = null;
 @onready
 var skills : LevelSkillDisplay = $UI/Skills;
 
@@ -28,9 +31,10 @@ func _ready() -> void:
 	spawn_player();
 	spawn_items();
 	spawn_enemy(750.0);
-	player_node.update_item_skills();
-	skills.update(self, player_node);
+	
+	update_item_related();
 	skills.skill_pressed.connect(skill_used);
+	player_node.walk();
 
 
 func _process(delta: float) -> void:
@@ -46,7 +50,8 @@ func spawn_enemy(at: float) -> void:
 
 
 func spawn_player() -> void:
-	player_node = character_pckd.instantiate();
+	player_node = frogbert_pckd.instantiate();
+	player_node.stats = GameState.player_stats;
 	player_node.position = $Player/PlayerSpawn.position;
 	$Player.add_child(player_node);
 	player_node.encounter.connect(on_encounter);
@@ -57,19 +62,75 @@ func spawn_items() -> void:
 		spawn_item("shield", x);
 
 
-func spawn_item(item: String, at: float) -> void:
+func spawn_item(item: String, x: float, y: float = 400.0) -> Item:
 	var item_node : Item = ItemsDB.get_item(item).instantiate();
-	item_node.position = Vector2(at, 400.0);
+	item_node.position = Vector2(x, y);
 	$Items.add_child(item_node);
 	item_node.picked.connect(on_item_picked.bind(item_node));
+	return item_node;
 
 
 func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
-	GameState.inventory.add_item(item_node);
-	item_node.hide();
+	if item_node != null:
+		GameState.inventory.add_item(item_node);
+		item_node.hide();
+	update_item_related();
+
+
+func update_item_related() -> void:
 	inventory.update();
 	player_node.update_item_skills();
 	skills.update(self, player_node);
+	check_overweight();
+
+
+func check_overweight() -> void:
+	var weight = GameState.inventory.current_weight;
+	var limit = GameState.player_stats.weight_capacity;
+	if weight > limit:
+		start_losing_it();
+	else:
+		stop_losing_it();
+
+
+func start_losing_it() -> void:
+	inventory.start_shake();
+	
+	if inventory_tween != null:
+		inventory_tween.kill();
+	
+	inventory_tween = create_tween();
+	inventory_tween.tween_interval(ITEM_DROP_INTERVAL);
+	inventory_tween.tween_callback(drop_item);
+	inventory_tween.tween_callback(update_item_related);
+
+
+func stop_losing_it() -> void:
+	inventory.stop_shake()
+	if inventory_tween != null:
+		inventory_tween.kill();
+
+
+func get_player_scene_position() -> Vector2:
+	return $Player.position + player_node.position;
+
+
+func drop_item() -> void:
+	var item = GameState.inventory.drop_random_item();
+	var player_position = get_player_scene_position();
+	var item_node := spawn_item(item, player_position.x, player_position.y);
+	
+	var item_x_speed := RUN_SPEED * (randf_range(-0.5, 3.0) - (1.0 if in_battle else 0.0));
+	var item_y_peak := randf_range(120.0, 240.0);
+	var fall_time := 1.0;
+	
+	var tween = create_tween();
+	tween.tween_property(item_node, ^"position:x", item_node.position.x + item_x_speed * fall_time, fall_time);
+	
+	var gravity_tween = create_tween();
+	gravity_tween.set_trans(Tween.TRANS_QUAD);
+	gravity_tween.tween_property(item_node, ^"position:y", item_y_peak, fall_time / 2).set_ease(Tween.EASE_OUT);
+	gravity_tween.tween_property(item_node, ^"position:y", player_position.y, fall_time / 2).set_ease(Tween.EASE_IN);
 
 
 func on_encounter(other_area: Area2D) -> void:
@@ -82,9 +143,13 @@ func start_fight(one: Character, another: Character) -> void:
 	in_battle = true;
 	one.enter_battle();
 	another.enter_battle();
+	
 	battle_manager.initiate_fight(one, another);
 	await battle_manager.battle_ended;
+	
 	in_battle = false;
+	one.walk();
+	another.walk();
 
 
 func skill_used(skill: CharacterSkill) -> void:

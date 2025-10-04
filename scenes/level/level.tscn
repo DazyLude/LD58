@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://sk0jlu4umyxc"]
+[gd_scene load_steps=9 format=3 uid="uid://sk0jlu4umyxc"]
 
 [ext_resource type="Script" uid="uid://dmbnwr3qm0ypk" path="res://scenes/level/level.gd" id="1_2q6dc"]
-[ext_resource type="Texture2D" uid="uid://cl2tp88f12d6f" path="res://icon.svg" id="2_w7c3h"]
 [ext_resource type="Script" uid="uid://dxj027x86hsda" path="res://scripts/battle_manager.gd" id="2_w8frs"]
+[ext_resource type="Texture2D" uid="uid://tebqjepujitc" path="res://assets/graphics/locations/1back.png" id="3_hnne4"]
 [ext_resource type="PackedScene" uid="uid://d33fle543kdmy" path="res://scenes/level/inventory_display.tscn" id="4_qkmgm"]
+[ext_resource type="Texture2D" uid="uid://cqxuer3nybowe" path="res://assets/graphics/locations/2grass.png" id="4_xv074"]
 [ext_resource type="PackedScene" uid="uid://cmk8ofqo5ghf2" path="res://scenes/level/skill_display.tscn" id="5_hnne4"]
+[ext_resource type="Texture2D" uid="uid://8h3cnlx60v6e" path="res://assets/graphics/locations/3main.png" id="5_sytrn"]
+[ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="6_tf2q7"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2q6dc")
@@ -13,34 +16,34 @@ script = ExtResource("1_2q6dc")
 script = ExtResource("2_w8frs")
 metadata/_custom_type_script = "uid://dxj027x86hsda"
 
-[node name="Background" type="Node" parent="."]
+[node name="Background" type="Node2D" parent="."]
 
-[node name="Parallax2D" type="Parallax2D" parent="Background"]
-repeat_size = Vector2(948, 0)
+[node name="Horizon" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1896, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(485, 225)
-texture = ExtResource("2_w7c3h")
+[node name="Sprite2D" type="Sprite2D" parent="Background/Horizon"]
+texture = ExtResource("3_hnne4")
+centered = false
 
-[node name="Sprite2D2" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(672, 226)
-texture = ExtResource("2_w7c3h")
+[node name="Backdrop" type="Parallax2D" parent="Background"]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1896, 0)
 
-[node name="Sprite2D3" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(305, 226)
-texture = ExtResource("2_w7c3h")
+[node name="Sprite2D" type="Sprite2D" parent="Background/Backdrop"]
+texture = ExtResource("4_xv074")
+centered = false
 
-[node name="Sprite2D4" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(126, 226)
-texture = ExtResource("2_w7c3h")
+[node name="Main" type="Parallax2D" parent="Background"]
+repeat_size = Vector2(1896, 0)
 
-[node name="Sprite2D5" type="Sprite2D" parent="Background/Parallax2D"]
-position = Vector2(842, 226)
-texture = ExtResource("2_w7c3h")
+[node name="Sprite2D" type="Sprite2D" parent="Background/Main"]
+texture = ExtResource("5_sytrn")
+centered = false
 
-[node name="Enemies" type="Node" parent="."]
+[node name="Enemies" type="Node2D" parent="."]
 
-[node name="Items" type="Node" parent="."]
+[node name="Items" type="Node2D" parent="."]
 
 [node name="Player" type="Node2D" parent="."]
 
@@ -48,7 +51,17 @@ texture = ExtResource("2_w7c3h")
 anchor_mode = 0
 
 [node name="PlayerSpawn" type="Marker2D" parent="Player"]
-position = Vector2(159, 430)
+position = Vector2(260, 455)
+
+[node name="FrontGround" type="Node2D" parent="."]
+
+[node name="Front" type="Parallax2D" parent="FrontGround"]
+scroll_scale = Vector2(1.5, 1)
+repeat_size = Vector2(1896, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="FrontGround/Front"]
+texture = ExtResource("6_tf2q7")
+centered = false
 
 [node name="UI" type="CanvasLayer" parent="."]
 

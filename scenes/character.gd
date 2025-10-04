@@ -40,11 +40,21 @@ func update_item_skills() -> void:
 
 func on_death() -> void:
 	slain.emit();
+	self.rotation = PI / 2;
 
 
 func on_flight() -> void:
+	self.scale.x *= -1;
 	fled.emit();
 
 
 func enter_battle() -> void:
+	pass;
+
+
+func walk() -> void:
+	pass;
+
+
+func idle() -> void:
 	pass;
