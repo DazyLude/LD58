@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://o4g0fuigo4uk"]
+
+[ext_resource type="Script" uid="uid://ducfv6df0pcin" path="res://scenes/level/item_icon.gd" id="1_65j7c"]
+
+[node name="ItemIcon" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_65j7c")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

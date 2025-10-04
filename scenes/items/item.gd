@@ -2,6 +2,9 @@ extends Node2D
 class_name Item
 
 
+const PLACEHOLDER_NAME := "placeholder";
+
+
 signal picked(event_pos)
 signal dropped(event_pos)
 
@@ -9,8 +12,8 @@ signal dropped(event_pos)
 var hovered : bool = false;
 var held : bool = false;
 
-
-@export var item_name : String = "placeholder item";
+@onready var sprite : Sprite2D = $Sprite2D;
+@export var item_name : String = PLACEHOLDER_NAME;
 
 
 func _ready() -> void:

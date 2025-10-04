@@ -14,3 +14,7 @@ func _init() -> void:
 				var instance = resource.instantiate();
 				if instance is Item:
 					items[instance.item_name] = resource;
+
+
+func get_item(item: String) -> PackedScene:
+	return items.get(item, items[Item.PLACEHOLDER_NAME]);

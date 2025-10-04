@@ -19,6 +19,8 @@ var enemies : Dictionary[Area2D, Character] = {};
 var battle_manager : BattleManager = $BattleManager;
 var in_battle : bool = false;
 
+@onready
+var inventory : LevelInventoryDisplay = $UI/Inventory;
 
 func _ready() -> void:
 	spawn_player();
@@ -47,19 +49,20 @@ func spawn_player() -> void:
 
 func spawn_items() -> void:
 	for x in range(500.0, 2000.0, 250.0):
-		spawn_item(x);
+		spawn_item("concrete item", x);
 
 
-func spawn_item(at: float) -> void:
-	var item : Item = item_pckd.instantiate();
-	item.position = Vector2(at, 600.0);
-	$Items.add_child(item);
-	item.picked.connect(on_item_picked.bind(item));
+func spawn_item(item: String, at: float) -> void:
+	var item_node : Item = ItemsDB.get_item(item).instantiate();
+	item_node.position = Vector2(at, 400.0);
+	$Items.add_child(item_node);
+	item_node.picked.connect(on_item_picked.bind(item_node));
 
 
 func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
 	GameState.inventory.add_item(item_node);
 	item_node.hide();
+	inventory.update();
 
 
 func on_encounter(other_area: Area2D) -> void:
