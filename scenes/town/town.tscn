@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3og3kkayxkpu"]
+
+[ext_resource type="Script" uid="uid://vvps7rycscf1" path="res://scenes/town/town.gd" id="1_n11nm"]
+[ext_resource type="Script" uid="uid://bfm36b8bo028y" path="res://scenes/town/shop.gd" id="2_8b7wv"]
+[ext_resource type="Texture2D" uid="uid://cl2tp88f12d6f" path="res://icon.svg" id="3_8b7wv"]
+[ext_resource type="Texture2D" uid="uid://devfu8xfpp356" path="res://assets/graphics/town/capibara.png" id="4_06row"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v00pm"]
+
+[node name="Town" type="Node2D"]
+script = ExtResource("1_n11nm")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 411.0
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Shop" type="VBoxContainer" parent="UI/Panel/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_8b7wv")
+
+[node name="YourItems" type="ScrollContainer" parent="UI/Panel/MarginContainer/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer/Shop/YourItems"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Panel/MarginContainer/Shop"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="UI/Panel/MarginContainer/Shop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v00pm")
+
+[node name="Label2" type="Label" parent="UI/Panel/MarginContainer/Shop/HBoxContainer"]
+layout_mode = 2
+text = "exchange"
+
+[node name="VSeparator2" type="VSeparator" parent="UI/Panel/MarginContainer/Shop/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v00pm")
+
+[node name="Label" type="Label" parent="UI/Panel/MarginContainer/Shop/HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "1234"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel/MarginContainer/Shop/HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_8b7wv")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ShopkeeperItems" type="ScrollContainer" parent="UI/Panel/MarginContainer/Shop"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer/Shop/ShopkeeperItems"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="UI/Panel"]
+layout_mode = 0
+offset_left = 409.0
+offset_top = 2.0
+offset_right = 950.0
+offset_bottom = 640.0
+texture = ExtResource("4_06row")
+
+[node name="Label" type="Label" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 10.0
+offset_right = 158.0
+offset_bottom = 54.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Your Items"
+
+[node name="Label2" type="Label" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -54.0
+offset_right = 171.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Shopkeeper"

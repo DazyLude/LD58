@@ -13,7 +13,12 @@ func execute(user: Character, target: Character):
 	
 	var damage = roundf(user.stats.attack * randf_range(0.9, 1.1));
 	print("%s attacked %s for %s" % [user, target, damage]);
+	
+	user.attack();
+	await user.get_tree().create_timer(0.25).timeout;
 	target.stats.take_damage(damage);
+	await user.get_tree().create_timer(0.5).timeout;
+	user.enter_battle();
 
 
 

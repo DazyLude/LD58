@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://qasc485xmqey"]
+
+[ext_resource type="PackedScene" uid="uid://o4g0fuigo4uk" path="res://scenes/level/item_icon.tscn" id="1_1eq5c"]
+[ext_resource type="Script" uid="uid://c3fiqujkxu8b8" path="res://scenes/town/shop_item_row.gd" id="1_oqe6l"]
+[ext_resource type="Texture2D" uid="uid://cl2tp88f12d6f" path="res://icon.svg" id="2_oqe6l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p617o"]
+
+[node name="ItemRow" type="Panel"]
+custom_minimum_size = Vector2(0, 64)
+mouse_filter = 1
+script = ExtResource("1_oqe6l")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ItemIcon" parent="HBoxContainer" instance=ExtResource("1_1eq5c")]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "bogos"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_p617o")
+
+[node name="Cost" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "123"
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_oqe6l")
+expand_mode = 2
+stretch_mode = 5

@@ -58,3 +58,7 @@ func walk() -> void:
 
 func idle() -> void:
 	pass;
+
+
+func attack() -> void:
+	pass;

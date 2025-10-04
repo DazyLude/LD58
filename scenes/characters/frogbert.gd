@@ -21,3 +21,8 @@ func idle() -> void:
 func walk() -> void:
 	super.walk();
 	$AnimatedSprite.play(&"walk");
+
+
+func attack() -> void:
+	super.attack();
+	$AnimatedSprite.play(&"attack");

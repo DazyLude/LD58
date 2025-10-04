@@ -12,11 +12,13 @@ signal dropped(event_pos)
 var hovered : bool = false;
 var held : bool = false;
 
+
 @onready var sprite : Sprite2D = $Sprite2D;
 @export var item_name : String = PLACEHOLDER_NAME;
 
 @export var weight : float = 1.0;
 @export var can_be_dropped : bool = true;
+@export var cost : float = 1.0;
 
 
 func _ready() -> void:

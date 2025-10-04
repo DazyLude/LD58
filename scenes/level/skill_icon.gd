@@ -36,6 +36,6 @@ func set_skill(skill: CharacterSkill, character: Character, level: Level) -> voi
 	
 	if skill is CharacterItemSkill:
 		$Label.show();
-		$Label.text = "%d" % GameState.inventory.get_item_count_by_name(skill.associated_item);
+		$Label.text = "%d" % GameState.inventory.get_item_count(skill.associated_item);
 	else:
 		$Label.hide();
