@@ -2,7 +2,11 @@ extends Node
 class_name ItemsDBClass
 
 const ROOT := "res://scenes/items/";
-var items : Dictionary[String, PackedScene] = {}
+var items : Dictionary[String, PackedScene] = {};
+
+var item_skills : Dictionary[String, Script] = {
+	"shield": Block.Shield,
+}
 
 
 func _init() -> void:
@@ -18,3 +22,7 @@ func _init() -> void:
 
 func get_item(item: String) -> PackedScene:
 	return items.get(item, items[Item.PLACEHOLDER_NAME]);
+
+
+func get_item_skill(item: String) -> Script:
+	return item_skills.get(item, null);

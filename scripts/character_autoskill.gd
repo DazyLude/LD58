@@ -2,7 +2,6 @@ extends CharacterSkill
 class_name CharacterAutoSkill
 
 
-var autocast_time : float;
 var skill : CharacterSkill = null;
 
 
@@ -12,3 +11,8 @@ func execute(user: Character, target: Character):
 		return;
 	
 	skill.execute(user, target);
+
+
+@warning_ignore("unused_parameter")
+func can_be_used(context: Level) -> bool:
+	return true;

@@ -5,7 +5,6 @@ class_name Level
 const RUN_SPEED := 50.0;
 
 var character_pckd : PackedScene = preload("res://scenes/character.tscn");
-var item_pckd : PackedScene = preload("res://scenes/items/concrete_item.tscn");
 
 @onready
 var player_root : Node2D = $Player;
@@ -21,11 +20,17 @@ var in_battle : bool = false;
 
 @onready
 var inventory : LevelInventoryDisplay = $UI/Inventory;
+@onready
+var skills : LevelSkillDisplay = $UI/Skills;
+
 
 func _ready() -> void:
 	spawn_player();
 	spawn_items();
 	spawn_enemy(750.0);
+	player_node.update_item_skills();
+	skills.update(self, player_node);
+	skills.skill_pressed.connect(skill_used);
 
 
 func _process(delta: float) -> void:
@@ -49,7 +54,7 @@ func spawn_player() -> void:
 
 func spawn_items() -> void:
 	for x in range(500.0, 2000.0, 250.0):
-		spawn_item("concrete item", x);
+		spawn_item("shield", x);
 
 
 func spawn_item(item: String, at: float) -> void:
@@ -63,6 +68,8 @@ func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
 	GameState.inventory.add_item(item_node);
 	item_node.hide();
 	inventory.update();
+	player_node.update_item_skills();
+	skills.update(self, player_node);
 
 
 func on_encounter(other_area: Area2D) -> void:
@@ -78,3 +85,12 @@ func start_fight(one: Character, another: Character) -> void:
 	battle_manager.initiate_fight(one, another);
 	await battle_manager.battle_ended;
 	in_battle = false;
+
+
+func skill_used(skill: CharacterSkill) -> void:
+	if in_battle:
+		var combatants = battle_manager.battle_state.keys();
+		var target = skill.targeting_strategy.select(combatants, player_node);
+		skill.execute(player_node, target);
+	else:
+		skill.execute(player_node, player_node);

@@ -20,4 +20,4 @@ func execute(user: Character, target: Character):
 class Auto extends CharacterAutoSkill:
 	func _init() -> void:
 		skill = BasicAttack.new();
-		autocast_time = 1.0;
+		cooldown = 1.0;

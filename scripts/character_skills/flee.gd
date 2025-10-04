@@ -2,5 +2,10 @@ extends CharacterSkill
 class_name Flee
 
 
-func execute(user: Character, _target: Character):
-	user.on_flight();
+func _init() -> void:
+	targeting_strategy = TargetingStrategySelf.new();
+
+
+@warning_ignore("unused_parameter")
+func execute(user: Character, target: Character):
+	target.on_flight();
