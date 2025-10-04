@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 		$ProgressBar.value -= delta;
 	
 	disabled = $ProgressBar.value > $ProgressBar.min_value or not skill_cache.can_be_used(level_cache);
+	$ProgressBar.visible = $ProgressBar.value > $ProgressBar.min_value;
 
 
 func start_cooldown() -> void:
@@ -28,13 +29,13 @@ func set_skill(skill: CharacterSkill, character: Character, level: Level) -> voi
 		self.icon = skill.icon;
 		$ProgressBar.min_value = 0.0;
 		$ProgressBar.max_value = skill.cooldown * character.stats.attack_speed;
+		$ProgressBar.value = $ProgressBar.min_value;
 	
 	if level != level_cache:
 		level_cache = level;
 	
 	if skill is CharacterItemSkill:
 		$Label.show();
-		$Label.position = SIZE * 0.8;
 		$Label.text = "%d" % GameState.inventory.get_item_count_by_name(skill.associated_item);
 	else:
 		$Label.hide();

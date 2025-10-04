@@ -1,0 +1,78 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bm77tr0r4mkbg"]
+
+[ext_resource type="FontFile" uid="uid://bym4204iibsyw" path="res://assets/fonts/static/GrenzeGotisch-SemiBold.ttf" id="1_c8gvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx1ym"]
+bg_color = Color(0.14117648, 0.48235294, 0.627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.111312844, 0.40720585, 0.5325687, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8gvj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrysy"]
+bg_color = Color(0.4392157, 0.75686276, 0.7019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3005881, 0.5800501, 0.5335279, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7rfq8"]
+bg_color = Color(0.69803923, 0.85882354, 0.7490196, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.50441897, 0.7009346, 0.570611, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cet87"]
+bg_color = Color(0.14117648, 0.48235294, 0.627451, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.14117648, 0.48235294, 0.627451, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ovo4r"]
+bg_color = Color(0.69803923, 0.85882354, 0.7490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_27h7j"]
+bg_color = Color(0.14117648, 0.48235294, 0.627451, 1)
+
+[resource]
+Button/colors/font_color = Color(0.12895408, 0.2887215, 0.26263994, 1)
+Button/colors/font_disabled_color = Color(0.4392157, 0.75686276, 0.7019608, 1)
+Button/colors/font_focus_color = Color(0.12941177, 0.2901961, 0.2627451, 1)
+Button/colors/font_hover_color = Color(0.12941177, 0.2901961, 0.2627451, 1)
+Button/colors/font_hover_pressed_color = Color(0.12941177, 0.2901961, 0.2627451, 1)
+Button/colors/font_pressed_color = Color(0.12941177, 0.2901961, 0.2627451, 1)
+Button/font_sizes/font_size = 36
+Button/fonts/font = ExtResource("1_c8gvj")
+Button/styles/disabled = SubResource("StyleBoxFlat_cx1ym")
+Button/styles/focus = SubResource("StyleBoxEmpty_c8gvj")
+Button/styles/hover = SubResource("StyleBoxFlat_nrysy")
+Button/styles/normal = SubResource("StyleBoxFlat_7rfq8")
+Button/styles/pressed = SubResource("StyleBoxFlat_cet87")
+Label/font_sizes/font_size = 36
+Label/fonts/font = ExtResource("1_c8gvj")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_ovo4r")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_27h7j")

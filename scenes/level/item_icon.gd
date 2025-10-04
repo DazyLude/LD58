@@ -22,5 +22,5 @@ func set_item(item: String, count: int) -> void:
 	item_scene.scale = Vector2(scale_factor, scale_factor);
 	
 	move_child($Label, item_scene.get_index())
-	$Label.position = SIZE * 0.8;
+	$Label.position = SIZE * 0.4;
 	$Label.text = "%d" % count;

@@ -24,6 +24,10 @@ ItemsDB="*res://data/items_db.gd"
 window/size/viewport_width=948
 window/size/viewport_height=533
 
+[gui]
+
+theme/custom="uid://bm77tr0r4mkbg"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
