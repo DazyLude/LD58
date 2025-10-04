@@ -16,7 +16,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Gamestate="*res://scripts/gamestate.gd"
+GameState="*res://scripts/gamestate.gd"
+ItemsDB="*res://data/items_db.gd"
 
 [display]
 

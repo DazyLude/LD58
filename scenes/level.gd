@@ -5,7 +5,7 @@ class_name Level
 const RUN_SPEED := 50.0;
 
 var character_pckd : PackedScene = preload("res://scenes/character.tscn");
-var item_pckd : PackedScene = preload("res://scenes/item.tscn");
+var item_pckd : PackedScene = preload("res://scenes/items/concrete_item.tscn");
 
 @onready
 var player_root : Node2D = $Player;
@@ -58,6 +58,7 @@ func spawn_item(at: float) -> void:
 
 
 func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
+	GameState.inventory.add_item(item_node);
 	item_node.hide();
 
 

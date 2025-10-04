@@ -14,11 +14,14 @@ var usable_skills : Array[CharacterSkill] = []
 
 @onready
 var hitbox : Area2D = $Area2D;
+@onready
+var hp_display : HPDisplay = $HpBar
 
 
 func _ready() -> void:
 	$Area2D.area_entered.connect(encounter.emit);
 	stats.slain.connect(on_death);
+	hp_display.connect_character(self);
 
 
 func on_death() -> void:

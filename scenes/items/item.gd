@@ -10,6 +10,9 @@ var hovered : bool = false;
 var held : bool = false;
 
 
+@export var item_name : String = "placeholder item";
+
+
 func _ready() -> void:
 	$Area2D.mouse_entered.connect(_on_hover);
 	$Area2D.mouse_exited.connect(_on_stop_hover);
