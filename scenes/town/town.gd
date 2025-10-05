@@ -15,6 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	BgmPlayer.change_track(BgmPlayer.SoundID.Music3);
 	show_shop();
 	
 	$UI/MissionSelect/Panel/VBoxContainer/ToShop.pressed.connect(show_shop);

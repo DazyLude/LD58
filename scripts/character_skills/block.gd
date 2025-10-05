@@ -29,3 +29,4 @@ class Shield extends CharacterItemSkill:
 		associated_item = "shield";
 		cost = 1;
 		cooldown = 2.5;
+		icon = preload("res://assets/graphics/icons/shield.png")

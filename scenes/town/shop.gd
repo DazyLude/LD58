@@ -14,6 +14,14 @@ var shopkeep_item_rows : Dictionary[String, ShopItemRow] = {};
 var shopkeep_inventory := InventoryManager.new();
 
 
+var sfxplayer : PolyphonicSfxPlayer = null;
+
+
+func _ready() -> void:
+	sfxplayer = PolyphonicSfxPlayer.new();
+	add_child(sfxplayer);
+
+
 func update_all() -> void:
 	for item in GameState.inventory.contents:
 		var item_row := get_your_item_row(item);
@@ -88,6 +96,7 @@ func sell(item: String) -> void:
 	GameState.cash += GameState.inventory.get_item_cost(item);
 	update_item(item);
 	update_cash();
+	sfxplayer.play_sound(preload("res://assets/sounds/sfx/payment.wav"))
 
 
 func buy(item: String) -> void:
@@ -97,6 +106,7 @@ func buy(item: String) -> void:
 		GameState.cash -= GameState.inventory.get_item_cost(item);
 		update_item(item);
 		update_cash();
+		sfxplayer.play_sound(preload("res://assets/sounds/sfx/payment.wav"))
 
 
 func update_cash() -> void:

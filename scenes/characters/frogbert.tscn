@@ -1,13 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmwvtxxc156r7"]
+[gd_scene load_steps=18 format=3 uid="uid://bmwvtxxc156r7"]
 
 [ext_resource type="Script" uid="uid://bfxg4s7v1n1xo" path="res://scenes/characters/frogbert.gd" id="1_2nyhh"]
+[ext_resource type="AudioStream" uid="uid://cxdkla6i08g5r" path="res://assets/sounds/sfx/hit_metallic.wav" id="2_8qutj"]
 [ext_resource type="Texture2D" uid="uid://cegrtikksoik1" path="res://assets/graphics/sir frogbert/pre-slash.png" id="2_71ydd"]
 [ext_resource type="Texture2D" uid="uid://bfqiw4hufqh6u" path="res://assets/graphics/sir frogbert/alert.png" id="2_mjfow"]
 [ext_resource type="Texture2D" uid="uid://bw0qn16dfgudx" path="res://assets/graphics/sir frogbert/still.png" id="2_sjwcq"]
 [ext_resource type="PackedScene" uid="uid://b0suseb3f8m0j" path="res://scenes/hp_bar.tscn" id="3_51h2d"]
+[ext_resource type="AudioStream" uid="uid://cryaie66ahlkx" path="res://assets/sounds/sfx/qwaaaaa.ogg" id="3_saagr"]
 [ext_resource type="Texture2D" uid="uid://cbut675bryixp" path="res://assets/graphics/sir frogbert/slash.png" id="3_vjwik"]
 [ext_resource type="Texture2D" uid="uid://c4t1fl4yk8il0" path="res://assets/graphics/sir frogbert/walk1.png" id="4_wh5hk"]
 [ext_resource type="Texture2D" uid="uid://c7fo5e058e3sb" path="res://assets/graphics/sir frogbert/walk2.png" id="5_71ydd"]
+[ext_resource type="Script" uid="uid://c2q6r12jbg0wt" path="res://scenes/node.gd" id="11_saagr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_saagr"]
 atlas = ExtResource("2_71ydd")
@@ -71,11 +74,15 @@ radius = 200.0
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_2nyhh")
+hit_sound = ExtResource("2_8qutj")
+windup_sound = ExtResource("3_saagr")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-39, -130)
 sprite_frames = SubResource("SpriteFrames_saagr")
 animation = &"attack"
+
+[node name="ThrowTarget" type="Marker2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
@@ -89,3 +96,6 @@ shape = SubResource("CircleShape2D_lrhn5")
 
 [node name="HpBar" parent="." instance=ExtResource("3_51h2d")]
 position = Vector2(-36, -338)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("11_saagr")

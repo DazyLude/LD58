@@ -1,11 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://cx3q58nl7p8n4"]
 
 [ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_6ovhi"]
-[ext_resource type="Texture2D" uid="uid://fywa4psykers" path="res://assets/graphics/shield.png" id="2_6ovhi"]
+[ext_resource type="Texture2D" uid="uid://cdd4l06kfg7sn" path="res://assets/graphics/icons/shield.png" id="2_6ovhi"]
 
 [node name="Item" type="Node2D"]
 script = ExtResource("1_6ovhi")
 item_name = "shield"
+item_official_name = "Shield"
+weight = 10.0
+cost = 20.0
+description = "A sturdy, heavy shield.
+Gives you an ability to block incoming damage, if timed correctly."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_6ovhi")
