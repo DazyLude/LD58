@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bowgm0q3v6nb7"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_it3on"]
+[ext_resource type="Texture2D" uid="uid://x1ug0iguqyf3" path="res://assets/graphics/icons/book.png" id="2_it3on"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3v4c"]
+radius = 52.530567
+height = 132.32732
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_it3on")
+item_name = "holy_book"
+item_official_name = "Holy Book"
+cost = 20.0
+description = "Books are quite rare, and this one is in a good condition.
+Despite its holiness, can't be used to repell monsters.
+Can be sold for a bit of coin."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_it3on")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-5, 1)
+rotation = -0.5659046
+shape = SubResource("CapsuleShape2D_i3v4c")

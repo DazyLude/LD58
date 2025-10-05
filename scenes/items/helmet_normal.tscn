@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxkrimw42jxg4"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_5pujy"]
+[ext_resource type="Texture2D" uid="uid://cuw7soptayhbv" path="res://assets/graphics/icons/helmet2.png" id="2_5pujy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lhn4"]
+radius = 62.008064
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_5pujy")
+item_name = "helmet2"
+item_official_name = "Good Helmet"
+weight = 5.0
+cost = 8.0
+description = "A helmet, once owned by a soldier.
+It's in alright condition.
+Offers some protection."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5pujy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5lhn4")

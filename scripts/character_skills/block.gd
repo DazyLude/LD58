@@ -27,5 +27,5 @@ class Shield extends CharacterItemSkill:
 		skill = Block.new();
 		targeting_strategy = TargetingStrategySelf.new();
 		associated_item = "shield";
-		cost = 0;
+		cost = 1;
 		cooldown = 2.5;

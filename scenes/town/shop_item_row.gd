@@ -12,10 +12,10 @@ func _gui_input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled();
 
 
-func set_item(item: String, description: String, count: int, price: int) -> void:
+func set_item(item: String, item_name: String, description: String, count: int, price: int) -> void:
 	visible = count >= 1;
 	
 	$HBoxContainer/ItemIcon.set_item(item, count);
-	$HBoxContainer/ItemIcon.tooltip_text = description;
-	$HBoxContainer/Name.text = item;
+	$HBoxContainer.tooltip_text = description;
+	$HBoxContainer/Name.text = item_name;
 	$HBoxContainer/Cost.text = "%d" % price;

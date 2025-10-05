@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dx8vayw0twu0v"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_qc171"]
+[ext_resource type="Texture2D" uid="uid://bvfl7r2ihclvh" path="res://assets/graphics/icons/helmet1.png" id="2_qc171"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lhn4"]
+radius = 62.008064
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_qc171")
+item_name = "helmet1"
+item_official_name = "Rusty Helmet"
+weight = 5.0
+cost = 2.0
+description = "An old helmet, once owned by a soldier.
+That was a long time ago, though. 
+Offers a little bit of protection."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_qc171")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5lhn4")

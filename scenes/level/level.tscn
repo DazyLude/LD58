@@ -26,11 +26,11 @@ repeat_size = Vector2(1896, 0)
 texture = ExtResource("3_hnne4")
 centered = false
 
-[node name="Backdrop" type="Parallax2D" parent="Background"]
+[node name="Back" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(1896, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Backdrop"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Back"]
 texture = ExtResource("4_xv074")
 centered = false
 
@@ -41,9 +41,9 @@ repeat_size = Vector2(1896, 0)
 texture = ExtResource("5_sytrn")
 centered = false
 
-[node name="Items" type="Node2D" parent="."]
-
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
 
 [node name="Player" type="Node2D" parent="."]
 
@@ -68,11 +68,6 @@ centered = false
 [node name="Inventory" parent="UI" instance=ExtResource("4_qkmgm")]
 
 [node name="Skills" parent="UI" instance=ExtResource("5_hnne4")]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_top = -83.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2

@@ -8,6 +8,8 @@ signal slain;
 
 
 var stats := CharacterStats.new();
+var inventory := InventoryManager.new();
+
 var auto_skills : Array[CharacterAutoSkill] = [BasicAttack.Auto.new()];
 var usable_skills : Array[CharacterSkill] :
 	get:
@@ -15,6 +17,13 @@ var usable_skills : Array[CharacterSkill] :
 
 var default_skills : Array[CharacterSkill] = [Flee.new()];
 var item_skills : Array[CharacterItemSkill] = [];
+var item_buffs : Dictionary[String, RefCounted] = {};
+
+
+@export
+var wind_up := 0.25;
+@export 
+var drop : String = "";
 
 
 @onready
@@ -32,19 +41,34 @@ func _ready() -> void:
 func update_item_skills() -> void:
 	item_skills.clear();
 	
-	for item in GameState.inventory.contents:
+	for item in inventory.contents:
 		var skill := ItemsDB.get_item_skill(item);
 		if skill != null:
-			item_skills.push_back(skill.new())
+			item_skills.push_back(skill.new());
+
+
+func update_item_buffs() -> void:
+	for item in item_buffs:
+		stats.revoke_buffs(item);
+	
+	item_buffs.clear();
+	
+	for buff_group in ItemsDB.item_buffs:
+		var buff := buff_group.get_strongest_for_items(inventory.contents.keys());
+		if buff != null:
+			item_buffs[buff_group.last_item] = null;
+			stats.grant_buff(buff_group.last_item, buff);
 
 
 func on_death() -> void:
 	slain.emit();
+	hp_display.hide();
 	self.rotation = PI / 2;
 
 
 func on_flight() -> void:
 	self.scale.x *= -1;
+	hp_display.hide();
 	fled.emit();
 
 

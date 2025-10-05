@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://e6bq7w1oim65"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_hiebw"]
+[ext_resource type="Texture2D" uid="uid://cwbej3d2cgxmf" path="res://assets/graphics/icons/helmet3.png" id="2_hiebw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5lhn4"]
+radius = 62.008064
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_hiebw")
+item_name = "helmet3"
+item_official_name = "Pristine Helmet"
+weight = 5.0
+cost = 20.0
+description = "A helmet, once owned by an officer.
+A lucky find!
+Offers excellent protection."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hiebw")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5lhn4")
