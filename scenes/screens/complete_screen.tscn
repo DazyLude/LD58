@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbwjxad34kwkr"]
+
+[ext_resource type="Script" uid="uid://b0kef8vhke4vr" path="res://scenes/screens/complete_screen.gd" id="1_hs8ay"]
+[ext_resource type="Theme" uid="uid://bm77tr0r4mkbg" path="res://assets/default.tres" id="1_yiamy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35ovi"]
+
+[node name="LevelComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hs8ay")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 70
+theme_override_constants/margin_right = 70
+
+[node name="Background" type="Panel" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_yiamy")
+theme_override_styles/panel = SubResource("StyleBoxFlat_35ovi")
+
+[node name="Header" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -118.0
+offset_right = 118.0
+offset_bottom = 63.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "Level Complete!"
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -60.0
+offset_right = 83.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Continue" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenu" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="Buttons"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "(progress will be lost)"
+horizontal_alignment = 1
