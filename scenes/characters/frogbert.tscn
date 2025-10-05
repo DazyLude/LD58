@@ -83,6 +83,7 @@ sprite_frames = SubResource("SpriteFrames_saagr")
 animation = &"attack"
 
 [node name="ThrowTarget" type="Marker2D" parent="."]
+position = Vector2(-44, -169)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

@@ -1,4 +1,5 @@
 extends Character
+class_name AnimatedCharacter
 
 
 func on_death() -> void:

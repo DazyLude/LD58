@@ -35,5 +35,3 @@ func _ready() -> void:
 	
 	$SoundButtons/ToggleMusic.pressed.connect(_on_music_toggle);
 	$SoundButtons/ToggleSFX.pressed.connect(_on_effects_toggle);
-	
-	# BgmPlayer.change_track(BgmPlayer.SoundID.Music1);

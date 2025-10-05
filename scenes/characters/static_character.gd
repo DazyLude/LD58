@@ -1,4 +1,5 @@
 extends Character
+class_name StaticCharacter
 
 
 var body_deform_tween : Tween = null;
@@ -6,6 +7,7 @@ var body_deform_tween : Tween = null;
 @export var attack_speed_override : float = 1.0;
 @export var attack_override : float = 5.0;
 @export var hp_override : float = 50.0;
+@export var boss_name : String = "";
 
 
 func _ready() -> void:

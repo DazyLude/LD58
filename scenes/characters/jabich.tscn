@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://c23vpd2lvi0q5"]
+
+[ext_resource type="Script" uid="uid://el7fbns4o75b" path="res://scenes/characters/jabich.gd" id="1_vwthe"]
+[ext_resource type="AudioStream" uid="uid://dcxjg4yi3xdkp" path="res://assets/sounds/sfx/qwaaaaa2.ogg" id="2_4dbua"]
+[ext_resource type="Texture2D" uid="uid://lr7myg7m605g" path="res://assets/graphics/enemies/zhabich attac.png" id="2_45213"]
+[ext_resource type="Texture2D" uid="uid://dwtn8akqwam5k" path="res://assets/graphics/enemies/zhabich.png" id="2_vwthe"]
+[ext_resource type="Texture2D" uid="uid://broh5n8m1tiuw" path="res://assets/graphics/enemies/zhabich attac2.png" id="3_4dbua"]
+[ext_resource type="PackedScene" uid="uid://b0suseb3f8m0j" path="res://scenes/hp_bar.tscn" id="3_45213"]
+[ext_resource type="Script" uid="uid://c2q6r12jbg0wt" path="res://scenes/node.gd" id="4_4dbua"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dbua"]
+atlas = ExtResource("2_45213")
+region = Rect2(0, 0, 596, 587)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jed2k"]
+atlas = ExtResource("3_4dbua")
+region = Rect2(0, 0, 596, 587)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tpin0"]
+atlas = ExtResource("2_vwthe")
+region = Rect2(0, 0, 596, 587)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qp0oc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dbua")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_jed2k")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpin0")
+}],
+"loop": true,
+"name": &"battle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpin0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tpin0")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 1.5
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lrhn5"]
+radius = 191.04189
+
+[node name="Character" type="Node2D"]
+script = ExtResource("1_vwthe")
+attack_speed_override = 0.5
+attack_override = 25.0
+hp_override = 250.0
+boss_name = "Corrupted Sir Quacklet Collectoad"
+drop = "crystall_ball"
+windup_sound = ExtResource("2_4dbua")
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(6, -279)
+sprite_frames = SubResource("SpriteFrames_qp0oc")
+animation = &"attack"
+
+[node name="ThrowTarget" type="Marker2D" parent="."]
+position = Vector2(-27, -216)
+
+[node name="ThrowOrigin" type="Marker2D" parent="."]
+position = Vector2(11, -491)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_lrhn5")
+
+[node name="HpBar" parent="." instance=ExtResource("3_45213")]
+position = Vector2(-196, -394)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_4dbua")

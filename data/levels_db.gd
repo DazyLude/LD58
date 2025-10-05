@@ -17,8 +17,9 @@ func _init() -> void:
 		"bomb": 3.0,
 	}
 	forest.enemy_weights = {
-		"slime1": 100.0,
+		"jabich": 100.0,
 	}
+	forest.boss = "jabich";
 	
 	ruins.parallax_horizon = preload("res://assets/graphics/ruins/back.png")
 	ruins.parallax_horizon_width = 2844.0;

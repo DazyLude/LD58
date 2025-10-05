@@ -37,8 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
+	GameState.inventory.add_item_by_name("bomb", 1);
 	
-	GameState.inventory.add_item_by_name("shield", 10);
 	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
 	GameState.player_stats.hp = GameState.player_stats.max_hp;
 	spawn_player();
@@ -195,10 +195,10 @@ func drop_item(item := GameState.inventory.drop_random_item(), from: Character =
 	var fall_time := 1.0;
 	var destination := Vector2(item_position.x + item_x_speed * fall_time, item_position.y);
 	
-	throw_item(item, item_position, destination, item_y_peak, fall_time);
+	throw_item(item, false, item_position, destination, fall_time, item_y_peak);
 
 
-func throw_item(item: String, from: Vector2, at: Vector2, peak_y: float = max(from.y, at.y), time: float = 1.0) -> void:
+func throw_item(item: String, should_destroy: bool, from: Vector2, at: Vector2, time: float = 1.0, peak_y: float = min(from.y, at.y)) -> void:
 	var item_node := spawn_item(item, from.x, from.y);
 	var tween = create_tween();
 	tween.tween_property(item_node, ^"position:x", at.x, time);
@@ -210,7 +210,11 @@ func throw_item(item: String, from: Vector2, at: Vector2, peak_y: float = max(fr
 	var gravity_tween = create_tween();
 	gravity_tween.set_trans(Tween.TRANS_QUAD);
 	gravity_tween.tween_property(item_node, ^"position:y", peak_y, (time - 0.02) * first_half / y_travel + 0.01).set_ease(Tween.EASE_OUT);
-	gravity_tween.tween_property(item_node, ^"position:y", at.y, (time - 0.02) * first_half / y_travel + 0.01).set_ease(Tween.EASE_IN);
+	gravity_tween.tween_property(item_node, ^"position:y", at.y, (time - 0.02) * second_half / y_travel + 0.01).set_ease(Tween.EASE_IN);
+	
+	if should_destroy:
+		await tween.finished;
+		item_node.queue_free()
 
 
 func on_encounter(other_area: Area2D) -> void:
