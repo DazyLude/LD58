@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8mkunraqenes"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_2mdld"]
+[ext_resource type="Texture2D" uid="uid://ifdp235alw0m" path="res://assets/graphics/icons/ameba.png" id="2_2mdld"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l1e7v"]
+radius = 58.034473
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_2mdld")
+item_name = "slime"
+item_official_name = "Slime"
+description = "Quite useless, gross and sticky.
+Why did you pick it? Ew."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_2mdld")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_l1e7v")

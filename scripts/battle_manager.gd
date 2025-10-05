@@ -57,10 +57,12 @@ func stop_battle() -> void:
 
 func on_flight(character: Character) -> void:
 	battle_state[character] = STATE_FLED;
+	check_battle_result();
 
 
 func on_death(character: Character) -> void:
 	battle_state[character] = STATE_DIED;
+	check_battle_result();
 
 
 func get_active_participants() -> Array[Character]:
@@ -77,4 +79,5 @@ func check_battle_result() -> void:
 	var still_fighting = get_active_participants().size();
 	if still_fighting <= 1:
 		stop_battle();
+		await get_tree().create_timer(0.4).timeout;
 		battle_ended.emit();

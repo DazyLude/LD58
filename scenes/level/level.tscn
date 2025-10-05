@@ -41,9 +41,9 @@ repeat_size = Vector2(1896, 0)
 texture = ExtResource("5_sytrn")
 centered = false
 
-[node name="Items" type="Node2D" parent="."]
-
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Items" type="Node2D" parent="."]
 
 [node name="Player" type="Node2D" parent="."]
 

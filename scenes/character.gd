@@ -20,7 +20,10 @@ var item_skills : Array[CharacterItemSkill] = [];
 var item_buffs : Dictionary[String, RefCounted] = {};
 
 
+@export
 var wind_up := 0.25;
+@export 
+var drop : String = "";
 
 
 @onready
@@ -59,11 +62,13 @@ func update_item_buffs() -> void:
 
 func on_death() -> void:
 	slain.emit();
+	hp_display.hide();
 	self.rotation = PI / 2;
 
 
 func on_flight() -> void:
 	self.scale.x *= -1;
+	hp_display.hide();
 	fled.emit();
 
 

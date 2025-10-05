@@ -1,11 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7mg2prutmhdb"]
+[gd_scene load_steps=11 format=3 uid="uid://c3wp4gn3ylsh7"]
 
-[ext_resource type="Script" uid="uid://c8v8bgvqscwbj" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_rtw2f"]
 [ext_resource type="Theme" uid="uid://bm77tr0r4mkbg" path="res://assets/default.tres" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://tebqjepujitc" path="res://assets/graphics/locations/1back.png" id="3_5dd4i"]
 [ext_resource type="Texture2D" uid="uid://bbyoboyy756l3" path="res://assets/icons/music_off.svg" id="3_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cqxuer3nybowe" path="res://assets/graphics/locations/2grass.png" id="4_lgwnu"]
 [ext_resource type="Texture2D" uid="uid://cgeuk7resgh73" path="res://assets/icons/music_on.svg" id="4_oa1go"]
+[ext_resource type="Texture2D" uid="uid://8h3cnlx60v6e" path="res://assets/graphics/locations/3main.png" id="5_flqon"]
 [ext_resource type="Texture2D" uid="uid://djgy2hjenbk6u" path="res://assets/icons/sound_off.svg" id="5_tbmy8"]
 [ext_resource type="Texture2D" uid="uid://buvpun6kie12t" path="res://assets/icons/sound_on.svg" id="6_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="6_rcqid"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -16,6 +20,56 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_oa1go")
 script = ExtResource("1_rtw2f")
+
+[node name="Horizon" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 1)
+repeat_size = Vector2(1896, 0)
+autoscroll = Vector2(-15, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Horizon"]
+texture = ExtResource("3_5dd4i")
+centered = false
+
+[node name="Back" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(1896, 0)
+autoscroll = Vector2(-25, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Back"]
+texture = ExtResource("4_lgwnu")
+centered = false
+
+[node name="Main" type="Parallax2D" parent="."]
+repeat_size = Vector2(1896, 0)
+autoscroll = Vector2(-50, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Main"]
+texture = ExtResource("5_flqon")
+centered = false
+
+[node name="Front" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1.5, 1)
+repeat_size = Vector2(1896, 0)
+autoscroll = Vector2(-75, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Front"]
+texture = ExtResource("6_rcqid")
+centered = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -181.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "The Honorable Hunt of Sir Frogbert the Bold"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MainButtons" type="VBoxContainer" parent="."]
 layout_mode = 1

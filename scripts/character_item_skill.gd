@@ -20,7 +20,7 @@ func execute(user: Character, target: Character):
 
 func can_be_used(context: Level) -> bool:
 	var has_item := GameState.inventory.contents.has(associated_item);
-	var has_enough : bool = cost < GameState.inventory.contents.get(associated_item, -1);
+	var has_enough : bool = cost <= GameState.inventory.contents.get(associated_item, -1);
 	var battle_check := usable_out_of_combat or context.in_battle;
 	
 	return has_item and has_enough and battle_check;

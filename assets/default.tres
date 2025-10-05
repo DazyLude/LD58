@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bm77tr0r4mkbg"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://bm77tr0r4mkbg"]
 
 [ext_resource type="FontFile" uid="uid://bym4204iibsyw" path="res://assets/fonts/static/GrenzeGotisch-SemiBold.ttf" id="1_c8gvj"]
 [ext_resource type="FontFile" uid="uid://b62bqa7ndgskg" path="res://assets/fonts/CormorantSC-SemiBold.ttf" id="2_nrysy"]
@@ -18,6 +18,18 @@ corner_radius_bottom_left = 2
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c8gvj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nrysy"]
+bg_color = Color(0.4392157, 0.75686276, 0.7019608, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.3005881, 0.5800501, 0.5335279, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s2nva"]
 bg_color = Color(0.4392157, 0.75686276, 0.7019608, 1)
 border_width_left = 2
 border_width_top = 2
@@ -71,6 +83,7 @@ Button/fonts/font = ExtResource("1_c8gvj")
 Button/styles/disabled = SubResource("StyleBoxFlat_cx1ym")
 Button/styles/focus = SubResource("StyleBoxEmpty_c8gvj")
 Button/styles/hover = SubResource("StyleBoxFlat_nrysy")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_s2nva")
 Button/styles/normal = SubResource("StyleBoxFlat_7rfq8")
 Button/styles/pressed = SubResource("StyleBoxFlat_cet87")
 Label/font_sizes/font_size = 36

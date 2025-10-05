@@ -3,6 +3,7 @@ class_name LevelsDBClass
 
 
 var forest := LevelData.new();
+var ruins := LevelData.new();
 
 
 func _init() -> void:
@@ -16,5 +17,13 @@ func _init() -> void:
 		"bomb": 3.0,
 	}
 	forest.enemy_weights = {
-		"placeholder": 100.0,
+		"slime1": 100.0,
 	}
+	
+	ruins.parallax_horizon = preload("res://assets/graphics/ruins/back.png")
+	ruins.parallax_horizon_width = 2844.0;
+	ruins.parallax_back = null;
+	ruins.parallax_main = preload("res://assets/graphics/ruins/main.png")
+	ruins.parallax_main_width = 2844.0;
+	ruins.parallax_front = preload("res://assets/graphics/ruins/front.png")
+	ruins.parallax_front_width = 2844.0;

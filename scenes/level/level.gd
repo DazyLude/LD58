@@ -31,11 +31,10 @@ var skills : LevelSkillDisplay = $UI/Skills;
 
 
 func _ready() -> void:
+	GameState.player_stats.hp = GameState.player_stats.max_hp;
 	spawn_player();
 	
-	GameState.inventory.add_item_by_name("bomb", 4);
-	
-	level_data = LevelsDB.forest;
+	level_data = GameState.level if GameState.level != null else LevelsDB.forest;
 	setup_backgrounds();
 	
 	spawn_items();
@@ -170,10 +169,16 @@ func get_player_scene_position() -> Vector2:
 	return $Player.position + player_node.position;
 
 
-func drop_item() -> void:
-	var item = GameState.inventory.drop_random_item();
-	var player_position = get_player_scene_position();
-	var item_node := spawn_item(item, player_position.x, player_position.y);
+func drop_item(item := GameState.inventory.drop_random_item(), from: Character = player_node) -> void:
+	var item_position : Vector2;
+	
+	if from == player_node:
+		item_position = get_player_scene_position();
+	else:
+		item_position = from.position;
+	
+	var item_node := spawn_item(item, item_position.x, item_position.y);
+	var item_position_dupe = Vector2(item_position);
 	
 	var item_x_speed := RUN_SPEED * (randf_range(-0.5, 3.0) - (1.0 if in_battle else 0.0));
 	var item_y_peak := randf_range(120.0, 240.0);
@@ -185,7 +190,7 @@ func drop_item() -> void:
 	var gravity_tween = create_tween();
 	gravity_tween.set_trans(Tween.TRANS_QUAD);
 	gravity_tween.tween_property(item_node, ^"position:y", item_y_peak, fall_time / 2).set_ease(Tween.EASE_OUT);
-	gravity_tween.tween_property(item_node, ^"position:y", player_position.y, fall_time / 2).set_ease(Tween.EASE_IN);
+	gravity_tween.tween_property(item_node, ^"position:y", item_position_dupe.y, fall_time / 2).set_ease(Tween.EASE_IN);
 
 
 func on_encounter(other_area: Area2D) -> void:
@@ -202,13 +207,17 @@ func start_fight(one: Character, another: Character) -> void:
 	battle_manager.initiate_fight(one, another);
 	await battle_manager.battle_ended;
 	
-	resolve_battle()
+	resolve_battle(another, another == boss_node);
 
 
-func resolve_battle() -> void:
+func resolve_battle(opponent: Character, with_boss: bool = false) -> void:
 	in_battle = false;
 	match battle_manager.battle_state.get(player_node):
+		BattleManager.STATE_FIGHTING when with_boss:
+			victory_sequence();
 		BattleManager.STATE_FIGHTING:
+			if opponent.drop != "":
+				drop_item(opponent.drop, opponent);
 			player_node.walk();
 		BattleManager.STATE_FLED:
 			flee_sequence();
@@ -226,6 +235,12 @@ func flee_sequence() -> void:
 
 func death_sequence() -> void:
 	dead = true;
+	await get_tree().create_timer(2.0).timeout;
+	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
+
+
+func victory_sequence() -> void:
+	player_node.walk();
 	await get_tree().create_timer(2.0).timeout;
 	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
 
