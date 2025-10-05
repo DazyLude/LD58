@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 
 GameState="*res://scripts/gamestate.gd"
 ItemsDB="*res://data/items_db.gd"
+LevelsDB="*res://data/levels_db.gd"
+CharactersDB="*res://data/character_db.gd"
 
 [display]
 

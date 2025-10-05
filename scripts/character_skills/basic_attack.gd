@@ -15,13 +15,9 @@ func execute(user: Character, target: Character):
 	print("%s attacked %s for %s" % [user, target, damage]);
 	
 	user.attack();
-	await user.get_tree().create_timer(0.25).timeout;
-	
+	await user.get_tree().create_timer(user.wind_up).timeout;
 	if user.stats.is_alive:
 		target.stats.take_damage(damage);
-	await user.get_tree().create_timer(0.5).timeout;
-	user.enter_battle();
-
 
 
 class Auto extends CharacterAutoSkill:

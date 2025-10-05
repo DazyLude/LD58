@@ -19,7 +19,7 @@ var held : bool = false;
 @export var weight : float = 1.0;
 @export var can_be_dropped : bool = true;
 @export var cost : float = 1.0;
-
+@export_multiline var description : String = ""
 
 func _ready() -> void:
 	$Area2D.mouse_entered.connect(_on_hover);

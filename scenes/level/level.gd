@@ -5,8 +5,8 @@ class_name Level
 const RUN_SPEED := 75.0;
 const ITEM_DROP_INTERVAL := 0.5;
 
-var character_pckd : PackedScene = preload("res://scenes/character.tscn");
-var frogbert_pckd : PackedScene = preload("res://scenes/characters/frogbert.tscn");
+var frogbert_pckd : PackedScene = CharactersDB.get_character_scene("frogbert");
+var level_data : LevelData = null;
 
 @onready
 var player_root : Node2D = $Player;
@@ -15,6 +15,7 @@ var player_node : Character = null;
 
 var items : Array[Item] = [];
 var enemies : Dictionary[Area2D, Character] = {};
+var boss_node : Character = null;
 
 @onready
 var battle_manager : BattleManager = $BattleManager;
@@ -31,8 +32,11 @@ var skills : LevelSkillDisplay = $UI/Skills;
 
 func _ready() -> void:
 	spawn_player();
+	
+	level_data = LevelsDB.forest;
 	spawn_items();
-	spawn_enemy(750.0);
+	spawn_enemies();
+	spawn_boss();
 	
 	update_item_related();
 	skills.skill_pressed.connect(skill_used);
@@ -51,11 +55,27 @@ func _process(delta: float) -> void:
 	else:
 		player_root.position += Vector2(RUN_SPEED * delta, 0.0);
 
-func spawn_enemy(at: float) -> void:
-	var enemy_node : Character = character_pckd.instantiate();
+
+func spawn_enemies() -> void:
+	for x in range(
+		level_data.enemy_start_margin,
+		level_data.boss_distance - level_data.enemy_end_margin,
+		level_data.enemy_distance):
+			var enemy = level_data.select_random_enemy();
+			spawn_enemy(enemy, x);
+
+
+func spawn_boss() -> void:
+	var boss = spawn_enemy(level_data.boss, level_data.boss_distance);
+	boss_node = boss;
+
+
+func spawn_enemy(enemy: String, at: float) -> Character:
+	var enemy_node : Character = CharactersDB.get_character_scene(enemy).instantiate();
 	enemy_node.position = Vector2(at, $Player/PlayerSpawn.position.y);
 	$Enemies.add_child(enemy_node);
 	enemies[enemy_node.hitbox] = enemy_node;
+	return enemy_node;
 
 
 func spawn_player() -> void:
@@ -67,8 +87,12 @@ func spawn_player() -> void:
 
 
 func spawn_items() -> void:
-	for x in range(500.0, 2000.0, 250.0):
-		spawn_item("shield", x);
+	for x in range(
+		level_data.item_start_margin,
+		level_data.boss_distance - level_data.item_end_margin,
+		level_data.item_distance):
+			var item = level_data.select_random_item();
+			spawn_item(item, x);
 
 
 func spawn_item(item: String, x: float, y: float = 400.0) -> Item:
@@ -173,6 +197,7 @@ func resolve_battle() -> void:
 func flee_sequence() -> void:
 	if not fleeing:
 		fleeing = true;
+		player_node.walk();
 		await get_tree().create_timer(2.0).timeout;
 
 

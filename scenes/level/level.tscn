@@ -68,11 +68,6 @@ centered = false
 [node name="Inventory" parent="UI" instance=ExtResource("4_qkmgm")]
 
 [node name="Skills" parent="UI" instance=ExtResource("5_hnne4")]
-anchors_preset = 12
-anchor_top = 1.0
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-offset_top = -83.0
-offset_bottom = -83.0
-grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2

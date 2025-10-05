@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7c4w0725a6vg"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_fniux"]
+[ext_resource type="Texture2D" uid="uid://dv1dw0qasrcmw" path="res://assets/graphics/icons/sword3.png" id="2_fniux"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgv8o"]
+radius = 29.0
+height = 170.0
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_fniux")
+item_name = "sword3"
+weight = 5.0
+cost = 20.0
+description = "A sword that once belonged to an officer. A rare find!"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fniux")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.7812781
+shape = SubResource("CapsuleShape2D_qgv8o")

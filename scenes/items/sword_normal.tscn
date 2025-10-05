@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://c258gtgqyfc23"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_g8nah"]
+[ext_resource type="Texture2D" uid="uid://di5cus0yvk2yn" path="res://assets/graphics/icons/sword2.png" id="2_g8nah"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qgv8o"]
+radius = 29.0
+height = 170.0
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_g8nah")
+item_name = "sword2"
+weight = 5.0
+cost = 8.0
+description = "A sword that once belonged to a soldier. And in a pretty good condition!"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_g8nah")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.7812781
+shape = SubResource("CapsuleShape2D_qgv8o")

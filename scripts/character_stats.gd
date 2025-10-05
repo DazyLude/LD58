@@ -4,10 +4,13 @@ class_name CharacterStats
 
 signal slain;
 
-
+@export
 var hp := 100.0;
+@export
 var max_hp := 100.0;
+@export
 var attack := 10.0;
+@export
 var attack_speed := 1.0;
 
 var blocking : bool = false;

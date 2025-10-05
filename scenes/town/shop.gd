@@ -42,14 +42,16 @@ func update_all() -> void:
 func update_item(item: String) -> void:
 	var item_row := get_your_item_row(item);
 	item_row.set_item(
-		item, "",
+		item,
+		GameState.inventory.get_item_desc(item),
 		GameState.inventory.get_item_count(item),
 		GameState.inventory.get_item_cost(item),
 	);
 	
 	var his_item_row := get_shopkeeps_item_row(item);
 	his_item_row.set_item(
-		item, "",
+		item,
+		shopkeep_inventory.get_item_desc(item),
 		shopkeep_inventory.get_item_count(item),
 		shopkeep_inventory.get_item_cost(item),
 	);
