@@ -31,3 +31,7 @@ class Bomb extends CharacterItemSkill:
 		associated_item = "bomb";
 		cost = 1;
 		icon = preload("res://assets/graphics/icons/bomb.png");
+	
+	func execute(user: Character, target: Character):
+		super.execute(user, target);
+		user.sfx_player.play_sound(preload("res://assets/sounds/sfx/bomb.wav"))

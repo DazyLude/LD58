@@ -23,6 +23,8 @@ func _on_effects_toggle() -> void:
 
 
 func _ready() -> void:
+	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
+	
 	$MainButtons/PlayButton.pressed.connect(_on_play_button_pressed);
 	$MainButtons/TutorialButton.pressed.connect(_on_tutorial_button_pressed);
 	

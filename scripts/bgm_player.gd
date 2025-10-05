@@ -2,21 +2,27 @@ extends Node
 
 
 enum SoundID {
-	Music1,
-	Music2
+	None,
+	Music2,
+	Music3,
+	Battle1,
+	Battle2,
 }
 
 
 const uid_per_sound_id : Dictionary[SoundID, String] = {
-	SoundID.Music1: "",
-	SoundID.Music2: ""
+	SoundID.None: "",
+	SoundID.Music2: "res://assets/sounds/music/1_3.ogg",
+	SoundID.Music3: "res://assets/sounds/music/1_4.ogg",
+	SoundID.Battle1: "res://assets/sounds/music/2_1.ogg",
+	SoundID.Battle2: "res://assets/sounds/music/2_2.ogg",
 }
 
 
 const TRANSITION_TIME : float = 2.0;
 
 
-var current_track : SoundID = -1;
+var current_track : SoundID = SoundID.None;
 var last_player : AudioStreamPlayer;
 var player_tweens : Dictionary[AudioStreamPlayer, Tween];
 
@@ -42,6 +48,7 @@ func remove_player(player: AudioStreamPlayer) -> void:
 func change_track(new_track: SoundID) -> void:
 	if new_track == current_track:
 		return;
+	
 	current_track = new_track;
 	
 	if last_player != null:
@@ -53,6 +60,9 @@ func change_track(new_track: SoundID) -> void:
 		
 		lp_tween.tween_property(last_player, ^"volume_linear", 0.0, TRANSITION_TIME);
 		lp_tween.tween_callback(remove_player.bind(last_player));
+	
+	if new_track == SoundID.None:
+		return;
 	
 	var new_player = add_player();
 	last_player = new_player;
@@ -80,7 +90,3 @@ func change_track(new_track: SoundID) -> void:
 	
 	np_tween.tween_property(new_player, ^"volume_linear", 1.0, TRANSITION_TIME);
 	new_player.play();
-
-
-func _ready() -> void:
-	pass;

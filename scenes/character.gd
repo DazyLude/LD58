@@ -30,6 +30,18 @@ var drop : String = "";
 var hitbox : Area2D = $Area2D;
 @onready
 var hp_display : HPDisplay = $HpBar
+@onready
+var sfx_player : PolyphonicSfxPlayer = $Node;
+@onready
+var target : Marker2D = $ThrowTarget;
+
+@export
+var hit_sound : AudioStream = preload("res://assets/sounds/sfx/hit.wav");
+@export
+var windup_sound : AudioStream;
+
+
+var level_ref : Level = null;
 
 
 func _ready() -> void:

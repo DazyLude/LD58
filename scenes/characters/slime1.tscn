@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://uiwr2x4thmex"]
+[gd_scene load_steps=6 format=3 uid="uid://uiwr2x4thmex"]
 
 [ext_resource type="Script" uid="uid://42f30vdi10y4" path="res://scenes/characters/static_character.gd" id="1_wtppf"]
 [ext_resource type="Texture2D" uid="uid://bm2yknshsy7u2" path="res://assets/graphics/enemies/blob.png" id="2_wtppf"]
 [ext_resource type="PackedScene" uid="uid://b0suseb3f8m0j" path="res://scenes/hp_bar.tscn" id="3_2npkn"]
+[ext_resource type="Script" uid="uid://c2q6r12jbg0wt" path="res://scenes/node.gd" id="4_ojtqn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lrhn5"]
 radius = 186.00269
@@ -15,6 +16,8 @@ drop = "slime"
 position = Vector2(-11, -136)
 texture = ExtResource("2_wtppf")
 
+[node name="ThrowTarget" type="Marker2D" parent="."]
+
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -22,3 +25,6 @@ shape = SubResource("CircleShape2D_lrhn5")
 
 [node name="HpBar" parent="." instance=ExtResource("3_2npkn")]
 position = Vector2(-35, -344)
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("4_ojtqn")

@@ -15,8 +15,10 @@ func execute(user: Character, target: Character):
 	print("%s attacked %s for %s" % [user, target, damage]);
 	
 	user.attack();
+	user.sfx_player.play_sound(user.windup_sound);
 	await user.get_tree().create_timer(user.wind_up).timeout;
 	if user.stats.is_alive:
+		user.sfx_player.play_sound(user.hit_sound);
 		target.stats.take_damage(damage);
 
 

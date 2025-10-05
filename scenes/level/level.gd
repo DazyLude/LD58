@@ -31,6 +31,9 @@ var skills : LevelSkillDisplay = $UI/Skills;
 
 
 func _ready() -> void:
+	
+	GameState.inventory.add_item_by_name("shield", 10);
+	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
 	GameState.player_stats.hp = GameState.player_stats.max_hp;
 	spawn_player();
 	
@@ -92,6 +95,8 @@ func spawn_enemy(enemy: String, at: float) -> Character:
 	enemy_node.position = Vector2(at, $Player/PlayerSpawn.position.y);
 	$Enemies.add_child(enemy_node);
 	enemies[enemy_node.hitbox] = enemy_node;
+	enemy_node.level_ref = self;
+	
 	return enemy_node;
 
 
@@ -100,6 +105,7 @@ func spawn_player() -> void:
 	
 	player_node.stats = GameState.player_stats;
 	player_node.inventory = GameState.inventory;
+	player_node.level_ref = self;
 	
 	player_node.position = $Player/PlayerSpawn.position;
 	$Player.add_child(player_node);
@@ -125,6 +131,7 @@ func spawn_item(item: String, x: float, y: float = 400.0) -> Item:
 
 func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
 	if item_node != null:
+		player_node.sfx_player.play_sound(preload("res://assets/sounds/sfx/item_bag.wav"))
 		GameState.inventory.add_item(item_node);
 		item_node.hide();
 	update_item_related();
@@ -177,20 +184,27 @@ func drop_item(item := GameState.inventory.drop_random_item(), from: Character =
 	else:
 		item_position = from.position;
 	
-	var item_node := spawn_item(item, item_position.x, item_position.y);
-	var item_position_dupe = Vector2(item_position);
-	
 	var item_x_speed := RUN_SPEED * (randf_range(-0.5, 3.0) - (1.0 if in_battle else 0.0));
 	var item_y_peak := randf_range(120.0, 240.0);
 	var fall_time := 1.0;
+	var destination := Vector2(item_position.x + item_x_speed * fall_time, item_position.y);
 	
+	throw_item(item, item_position, destination, item_y_peak, fall_time);
+
+
+func throw_item(item: String, from: Vector2, at: Vector2, peak_y: float = max(from.y, at.y), time: float = 1.0) -> void:
+	var item_node := spawn_item(item, from.x, from.y);
 	var tween = create_tween();
-	tween.tween_property(item_node, ^"position:x", item_node.position.x + item_x_speed * fall_time, fall_time);
+	tween.tween_property(item_node, ^"position:x", at.x, time);
+	
+	var first_half = abs(peak_y - from.y);
+	var second_half = abs(peak_y - at.y)
+	var y_travel = first_half + second_half
 	
 	var gravity_tween = create_tween();
 	gravity_tween.set_trans(Tween.TRANS_QUAD);
-	gravity_tween.tween_property(item_node, ^"position:y", item_y_peak, fall_time / 2).set_ease(Tween.EASE_OUT);
-	gravity_tween.tween_property(item_node, ^"position:y", item_position_dupe.y, fall_time / 2).set_ease(Tween.EASE_IN);
+	gravity_tween.tween_property(item_node, ^"position:y", peak_y, (time - 0.02) * first_half / y_travel + 0.01).set_ease(Tween.EASE_OUT);
+	gravity_tween.tween_property(item_node, ^"position:y", at.y, (time - 0.02) * first_half / y_travel + 0.01).set_ease(Tween.EASE_IN);
 
 
 func on_encounter(other_area: Area2D) -> void:
@@ -200,6 +214,11 @@ func on_encounter(other_area: Area2D) -> void:
 
 
 func start_fight(one: Character, another: Character) -> void:
+	if another == boss_node:
+		BgmPlayer.change_track(BgmPlayer.SoundID.Battle2);
+	else:
+		BgmPlayer.change_track(BgmPlayer.SoundID.Battle1);
+	
 	in_battle = true;
 	one.enter_battle();
 	another.enter_battle();
@@ -211,6 +230,7 @@ func start_fight(one: Character, another: Character) -> void:
 
 
 func resolve_battle(opponent: Character, with_boss: bool = false) -> void:
+	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
 	in_battle = false;
 	match battle_manager.battle_state.get(player_node):
 		BattleManager.STATE_FIGHTING when with_boss:
