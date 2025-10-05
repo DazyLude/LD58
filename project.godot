@@ -21,6 +21,7 @@ GameState="*res://scripts/gamestate.gd"
 ItemsDB="*res://data/items_db.gd"
 LevelsDB="*res://data/levels_db.gd"
 CharactersDB="*res://data/character_db.gd"
+BgmPlayer="*res://scripts/bgm_player.gd"
 
 [display]
 
