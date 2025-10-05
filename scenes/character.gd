@@ -17,6 +17,9 @@ var default_skills : Array[CharacterSkill] = [Flee.new()];
 var item_skills : Array[CharacterItemSkill] = [];
 
 
+var wind_up := 0.25;
+
+
 @onready
 var hitbox : Area2D = $Area2D;
 @onready

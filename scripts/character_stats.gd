@@ -13,6 +13,11 @@ var attack_speed := 1.0;
 var blocking : bool = false;
 
 
+var is_alive : bool :
+	get:
+		return hp > 0.0;
+
+
 func take_damage(value: float) -> void:
 	if not blocking:
 		hp -= value;

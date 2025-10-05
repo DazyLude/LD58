@@ -16,7 +16,9 @@ func execute(user: Character, target: Character):
 	
 	user.attack();
 	await user.get_tree().create_timer(0.25).timeout;
-	target.stats.take_damage(damage);
+	
+	if user.stats.is_alive:
+		target.stats.take_damage(damage);
 	await user.get_tree().create_timer(0.5).timeout;
 	user.enter_battle();
 

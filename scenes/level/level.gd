@@ -19,6 +19,8 @@ var enemies : Dictionary[Area2D, Character] = {};
 @onready
 var battle_manager : BattleManager = $BattleManager;
 var in_battle : bool = false;
+var fleeing : bool = false;
+var dead : bool = false;
 
 @onready
 var inventory : LevelInventoryDisplay = $UI/Inventory;
@@ -35,12 +37,19 @@ func _ready() -> void:
 	update_item_related();
 	skills.skill_pressed.connect(skill_used);
 	player_node.walk();
+	
+	player_node.fled.connect(flee_sequence);
 
 
 func _process(delta: float) -> void:
-	if not in_battle:
+	if in_battle:
+		pass;
+	elif fleeing:
+		player_node.position -= Vector2(RUN_SPEED * delta, 0.0);
+	elif dead:
+		pass;
+	else:
 		player_root.position += Vector2(RUN_SPEED * delta, 0.0);
-
 
 func spawn_enemy(at: float) -> void:
 	var enemy_node : Character = character_pckd.instantiate();
@@ -147,9 +156,28 @@ func start_fight(one: Character, another: Character) -> void:
 	battle_manager.initiate_fight(one, another);
 	await battle_manager.battle_ended;
 	
+	resolve_battle()
+
+
+func resolve_battle() -> void:
 	in_battle = false;
-	one.walk();
-	another.walk();
+	match battle_manager.battle_state.get(player_node):
+		BattleManager.STATE_FIGHTING:
+			player_node.walk();
+		BattleManager.STATE_FLED:
+			flee_sequence();
+		BattleManager.STATE_DIED:
+			death_sequence();
+
+
+func flee_sequence() -> void:
+	if not fleeing:
+		fleeing = true;
+		await get_tree().create_timer(2.0).timeout;
+
+
+func death_sequence() -> void:
+	dead = true;
 
 
 func skill_used(skill: CharacterSkill) -> void:

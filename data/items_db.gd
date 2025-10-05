@@ -8,6 +8,10 @@ var item_skills : Dictionary[String, Script] = {
 	"shield": Block.Shield,
 }
 
+var item_effects : Dictionary[String, Script] = {
+	
+}
+
 
 func _init() -> void:
 	for file in DirAccess.get_files_at(ROOT):
