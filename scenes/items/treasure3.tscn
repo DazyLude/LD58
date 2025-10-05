@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://nhf1up2dnw5m"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_6ovbj"]
+[ext_resource type="Texture2D" uid="uid://byvypftqpod3r" path="res://assets/graphics/icons/bomb.png" id="2_6ovbj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3v4c"]
+radius = 52.530567
+height = 132.32732
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_6ovbj")
+item_name = "bomb"
+item_official_name = "Hand Grenade"
+weight = 2.0
+cost = 30.0
+description = "A load of gunpowder packed for a destructive delivery.
+There are rumors of a \"Holy\" version of it, but you're yet to find one.
+Can be thrown at enemies once to deal quite a bit of damage."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ovbj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5, -4)
+rotation = 0.52619445
+shape = SubResource("CapsuleShape2D_i3v4c")

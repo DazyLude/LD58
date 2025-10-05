@@ -8,15 +8,22 @@ var item_distance := 300.0;
 var item_start_margin := 600.0;
 var item_end_margin := 600.0;
 
-
 var enemy_weights : Dictionary[String, float] = {};
-
 var enemy_start_margin := 800.0;
 var enemy_end_margin := 1200.0;
 var enemy_distance := 1000.0;
 
 var boss_distance := 4000.0;
 var boss := "frogbert";
+
+var parallax_horizon : Texture2D = preload("res://assets/graphics/locations/1back.png");
+var parallax_horizon_width := 1896.0;
+var parallax_back : Texture2D = preload("res://assets/graphics/locations/2grass.png");
+var parallax_back_width := 1896.0;
+var parallax_main : Texture2D = preload("res://assets/graphics/locations/3main.png");
+var parallax_main_width := 1896.0;
+var parallax_front : Texture2D = preload("res://assets/graphics/locations/4front.png");
+var parallax_front_width := 1896.0;
 
 
 func select_random_item() -> String:

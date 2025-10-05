@@ -10,9 +10,12 @@ height = 170.0
 [node name="Item" type="Node2D"]
 script = ExtResource("1_g8nah")
 item_name = "sword2"
+item_official_name = "Good Sword"
 weight = 5.0
 cost = 8.0
-description = "A sword that once belonged to a soldier. And in a pretty good condition!"
+description = "A sword that once belonged to a soldier.
+And in a pretty good condition!
+Increases attack."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_g8nah")

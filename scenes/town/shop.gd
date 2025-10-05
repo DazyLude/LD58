@@ -14,16 +14,13 @@ var shopkeep_item_rows : Dictionary[String, ShopItemRow] = {};
 var shopkeep_inventory := InventoryManager.new();
 
 
-func _ready() -> void:
-	GameState.inventory.add_item_by_name("shield", 10);
-	shopkeep_inventory.add_item_by_name("shield", 10);
-
-
 func update_all() -> void:
 	for item in GameState.inventory.contents:
 		var item_row := get_your_item_row(item);
 		item_row.set_item(
-			item, "",
+			item,
+			GameState.inventory.get_item_official_name(item),
+			GameState.inventory.get_item_desc(item),
 			GameState.inventory.get_item_count(item),
 			GameState.inventory.get_item_cost(item),
 		);
@@ -31,7 +28,9 @@ func update_all() -> void:
 	for item in shopkeep_inventory.contents:
 		var item_row := get_shopkeeps_item_row(item);
 		item_row.set_item(
-			item, "",
+			item,
+			shopkeep_inventory.get_item_official_name(item),
+			shopkeep_inventory.get_item_desc(item),
 			shopkeep_inventory.get_item_count(item),
 			shopkeep_inventory.get_item_cost(item),
 		);
@@ -43,6 +42,7 @@ func update_item(item: String) -> void:
 	var item_row := get_your_item_row(item);
 	item_row.set_item(
 		item,
+		GameState.inventory.get_item_official_name(item),
 		GameState.inventory.get_item_desc(item),
 		GameState.inventory.get_item_count(item),
 		GameState.inventory.get_item_cost(item),
@@ -51,6 +51,7 @@ func update_item(item: String) -> void:
 	var his_item_row := get_shopkeeps_item_row(item);
 	his_item_row.set_item(
 		item,
+		shopkeep_inventory.get_item_official_name(item),
 		shopkeep_inventory.get_item_desc(item),
 		shopkeep_inventory.get_item_count(item),
 		shopkeep_inventory.get_item_cost(item),

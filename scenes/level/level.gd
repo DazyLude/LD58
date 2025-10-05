@@ -33,7 +33,11 @@ var skills : LevelSkillDisplay = $UI/Skills;
 func _ready() -> void:
 	spawn_player();
 	
+	GameState.inventory.add_item_by_name("bomb", 4);
+	
 	level_data = LevelsDB.forest;
+	setup_backgrounds();
+	
 	spawn_items();
 	spawn_enemies();
 	spawn_boss();
@@ -54,6 +58,20 @@ func _process(delta: float) -> void:
 		pass;
 	else:
 		player_root.position += Vector2(RUN_SPEED * delta, 0.0);
+
+
+func setup_backgrounds() -> void:
+	$Background/Horizon.repeat_size.x = level_data.parallax_horizon_width;
+	$Background/Horizon/Sprite2D.texture = level_data.parallax_horizon;
+	
+	$Background/Back.repeat_size.x = level_data.parallax_back_width;
+	$Background/Back/Sprite2D.texture = level_data.parallax_back;
+	
+	$Background/Main.repeat_size.x = level_data.parallax_main_width;
+	$Background/Main/Sprite2D.texture = level_data.parallax_main;
+	
+	$FrontGround/Front.repeat_size.x = level_data.parallax_front_width;
+	$FrontGround/Front/Sprite2D.texture = level_data.parallax_front;
 
 
 func spawn_enemies() -> void:
@@ -80,7 +98,10 @@ func spawn_enemy(enemy: String, at: float) -> Character:
 
 func spawn_player() -> void:
 	player_node = frogbert_pckd.instantiate();
+	
 	player_node.stats = GameState.player_stats;
+	player_node.inventory = GameState.inventory;
+	
 	player_node.position = $Player/PlayerSpawn.position;
 	$Player.add_child(player_node);
 	player_node.encounter.connect(on_encounter);
@@ -113,6 +134,7 @@ func on_item_picked(_event_position: Vector2, item_node: Item) -> void:
 func update_item_related() -> void:
 	inventory.update();
 	player_node.update_item_skills();
+	player_node.update_item_buffs();
 	skills.update(self, player_node);
 	check_overweight();
 
@@ -198,11 +220,14 @@ func flee_sequence() -> void:
 	if not fleeing:
 		fleeing = true;
 		player_node.walk();
-		await get_tree().create_timer(2.0).timeout;
+		await get_tree().create_timer(4.0).timeout;
+		get_tree().change_scene_to_file("res://scenes/town/town.tscn");
 
 
 func death_sequence() -> void:
 	dead = true;
+	await get_tree().create_timer(2.0).timeout;
+	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
 
 
 func skill_used(skill: CharacterSkill) -> void:
@@ -212,3 +237,5 @@ func skill_used(skill: CharacterSkill) -> void:
 		skill.execute(player_node, target);
 	else:
 		skill.execute(player_node, player_node);
+	
+	update_item_related();

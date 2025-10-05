@@ -26,11 +26,11 @@ repeat_size = Vector2(1896, 0)
 texture = ExtResource("3_hnne4")
 centered = false
 
-[node name="Backdrop" type="Parallax2D" parent="Background"]
+[node name="Back" type="Parallax2D" parent="Background"]
 scroll_scale = Vector2(0.5, 1)
 repeat_size = Vector2(1896, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="Background/Backdrop"]
+[node name="Sprite2D" type="Sprite2D" parent="Background/Back"]
 texture = ExtResource("4_xv074")
 centered = false
 

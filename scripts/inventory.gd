@@ -5,6 +5,7 @@ class_name InventoryManager
 static var item_weight_table : Dictionary[String, float] = {};
 static var item_cost_table : Dictionary[String, float] = {};
 static var item_description_table : Dictionary[String, String] = {};
+static var item_shop_name_table : Dictionary[String, String] = {};
 static var droppable : Dictionary[String, RefCounted] = {};
 
 
@@ -16,8 +17,15 @@ var current_weight : float:
 	get:
 		var sum := 0.0; 
 		for item in contents:
-			sum += contents[item] * item_weight_table[item];
+			sum += contents[item] * item_weight_table.get(item, 0.0);
 		return sum;
+
+
+func get_item_official_name(item: String) -> String:
+	if not has_item_data_cached(item):
+		save_items_data_by_name(item);
+	
+	return item_shop_name_table.get(item, "");
 
 
 func get_item_desc(item: String) -> String:
@@ -82,6 +90,7 @@ func save_items_data(item: Item) -> void:
 	item_weight_table[item.item_name] = item.weight;
 	item_cost_table[item.item_name] = item.cost;
 	item_description_table[item.item_name] = item.description;
+	item_shop_name_table[item.item_name] = item.item_official_name;
 	
 	if item.can_be_dropped:
 		droppable[item.item_name] = null;

@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bm77tr0r4mkbg"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bm77tr0r4mkbg"]
 
 [ext_resource type="FontFile" uid="uid://bym4204iibsyw" path="res://assets/fonts/static/GrenzeGotisch-SemiBold.ttf" id="1_c8gvj"]
+[ext_resource type="FontFile" uid="uid://b62bqa7ndgskg" path="res://assets/fonts/CormorantSC-SemiBold.ttf" id="2_nrysy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx1ym"]
 bg_color = Color(0.14117648, 0.48235294, 0.627451, 1)
@@ -76,3 +77,7 @@ Label/font_sizes/font_size = 36
 Label/fonts/font = ExtResource("1_c8gvj")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_ovo4r")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_27h7j")
+TooltipLabel/colors/font_color = Color(0.12941177, 0.2901961, 0.2627451, 1)
+TooltipLabel/font_sizes/font_size = 28
+TooltipLabel/fonts/font = ExtResource("2_nrysy")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_7rfq8")

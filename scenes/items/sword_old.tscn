@@ -10,9 +10,12 @@ height = 170.0
 [node name="Item" type="Node2D"]
 script = ExtResource("1_du68p")
 item_name = "sword1"
+item_official_name = "Rusty Sword"
 weight = 5.0
 cost = 2.0
-description = "A sword that once belonged to a soldier. That was a long time ago, though."
+description = "A sword that once belonged to a soldier.
+That was a long time ago, though.
+Increases attack slightly."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_du68p")

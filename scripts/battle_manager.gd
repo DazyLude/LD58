@@ -34,7 +34,7 @@ func initiate_fight(...participants: Array) -> void:
 func queue_cast(user: Character, skill: CharacterAutoSkill) -> void:
 	var tween := create_tween();
 	skill_tweens[skill] = tween;
-	tween.tween_interval(skill.cooldown * user.stats.attack_speed * randf_range(0.95, 1.05));
+	tween.tween_interval(randf_range(0.95, 1.05) * skill.cooldown / user.stats.attack_speed);
 	tween.tween_callback(cast_skill.bind(user, skill));
 
 
