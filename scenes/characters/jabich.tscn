@@ -73,7 +73,7 @@ windup_sound = ExtResource("2_4dbua")
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(6, -279)
 sprite_frames = SubResource("SpriteFrames_qp0oc")
-animation = &"attack"
+animation = &"walk"
 
 [node name="ThrowTarget" type="Marker2D" parent="."]
 position = Vector2(-27, -216)

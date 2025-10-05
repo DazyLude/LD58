@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgwm0ic7sv7tv"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_u284x"]
+[ext_resource type="Texture2D" uid="uid://dn06tbugiald8" path="res://assets/graphics/icons/pot2.png" id="2_u284x"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3v4c"]
+radius = 52.530567
+height = 145.9892
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_u284x")
+item_name = "potion_grey"
+item_official_name = "Concoction of Stone"
+weight = 2.0
+cost = 45.0
+description = "A mixture with a color of stone.
+Tastier than a rock.
+Can be consumed to increase resistances temporary."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u284x")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(7, -8)
+rotation = 0.7053835
+shape = SubResource("CapsuleShape2D_i3v4c")

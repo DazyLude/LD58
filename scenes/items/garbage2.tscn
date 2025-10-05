@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ciginhfo7vue7"]
+
+[ext_resource type="Script" uid="uid://c4xopqmvvquvc" path="res://scenes/items/item.gd" id="1_gelpt"]
+[ext_resource type="Texture2D" uid="uid://bean33lp7x7ga" path="res://assets/graphics/icons/bone.png" id="2_gelpt"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pcwv2"]
+radius = 20.614765
+height = 141.48593
+
+[node name="Item" type="Node2D"]
+script = ExtResource("1_gelpt")
+item_name = "bone"
+item_official_name = "Bone"
+description = "You're travelling alone because otherwise you'd be picking a bone with them."
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_gelpt")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.67370623
+shape = SubResource("CapsuleShape2D_pcwv2")
