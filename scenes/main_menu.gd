@@ -30,6 +30,11 @@ func _on_effects_toggle() -> void:
 func _ready() -> void:
 	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
 	
+	var is_music_muted: bool = AudioServer.is_bus_mute(MusicBusIndex);
+	var is_effects_muted: bool = AudioServer.is_bus_mute(EffectsBusIndex);
+	$SoundButtons/ToggleMusic.set_pressed_no_signal(is_music_muted);
+	$SoundButtons/ToggleSFX.set_pressed_no_signal(is_effects_muted);
+	
 	$MainButtons/PlayButton.pressed.connect(_on_play_button_pressed);
 	$MainButtons/TutorialButton.pressed.connect(_on_tutorial_button_pressed);
 	
