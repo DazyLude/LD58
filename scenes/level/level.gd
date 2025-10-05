@@ -5,6 +5,12 @@ class_name Level
 const RUN_SPEED := 75.0;
 const ITEM_DROP_INTERVAL := 0.5;
 
+
+var victory_screen_pckd : PackedScene = preload("res://scenes/screens/victory_screen.tscn");
+var fled_screen_pckd : PackedScene = preload("res://scenes/screens/fled_screen.tscn");
+var death_screen_pckd : PackedScene = preload("res://scenes/screens/death_screen.tscn");
+
+
 var frogbert_pckd : PackedScene = CharactersDB.get_character_scene("frogbert");
 var level_data : LevelData = null;
 
@@ -28,6 +34,9 @@ var inventory : LevelInventoryDisplay = $UI/Inventory;
 var inventory_tween : Tween = null;
 @onready
 var skills : LevelSkillDisplay = $UI/Skills;
+
+@onready
+var ui_container := $UI;
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -260,19 +269,22 @@ func flee_sequence() -> void:
 		fleeing = true;
 		player_node.walk();
 		await get_tree().create_timer(4.0).timeout;
-		get_tree().change_scene_to_file("res://scenes/screens/fled_screen.tscn");
+		var new_screen := fled_screen_pckd.instantiate();
+		ui_container.add_child(new_screen);
 
 
 func death_sequence() -> void:
 	dead = true;
 	await get_tree().create_timer(2.0).timeout;
-	get_tree().change_scene_to_file("res://scenes/screens/death_screen.tscn");
+	var new_screen := death_screen_pckd.instantiate();
+	ui_container.add_child(new_screen);
 
 
 func victory_sequence() -> void:
 	player_node.walk();
 	await get_tree().create_timer(2.0).timeout;
-	get_tree().change_scene_to_file("res://scenes/screens/victory_screen.tscn");
+	var new_screen := victory_screen_pckd.instantiate();
+	ui_container.add_child(new_screen);
 
 
 func skill_used(skill: CharacterSkill) -> void:
