@@ -8,6 +8,12 @@ var shop : Shop = $UI/Panel/MarginContainer/Shop;
 var goto_forest : Button = $UI/MissionSelect/Panel/VBoxContainer/HBoxContainer/Forest;
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_action(&"Pause"):
+		get_tree().paused = true
+		$UI/PauseMenu.show();
+
+
 func _ready() -> void:
 	show_shop();
 	

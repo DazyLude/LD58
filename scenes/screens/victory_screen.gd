@@ -2,7 +2,7 @@ extends Control
 
 
 func _on_continue_button_pressed() -> void:
-	pass; # TODO
+	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
 
 
 func _on_mainmenu_button_pressed() -> void:

@@ -83,4 +83,4 @@ func change_track(new_track: SoundID) -> void:
 
 
 func _ready() -> void:
-	pass;
+	process_mode = Node.PROCESS_MODE_ALWAYS;
