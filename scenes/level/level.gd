@@ -30,6 +30,12 @@ var inventory_tween : Tween = null;
 var skills : LevelSkillDisplay = $UI/Skills;
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.is_action(&"Pause"):
+		get_tree().paused = true
+		$UI/PauseMenu.show();
+
+
 func _ready() -> void:
 	
 	GameState.inventory.add_item_by_name("shield", 10);
@@ -250,19 +256,19 @@ func flee_sequence() -> void:
 		fleeing = true;
 		player_node.walk();
 		await get_tree().create_timer(4.0).timeout;
-		get_tree().change_scene_to_file("res://scenes/town/town.tscn");
+		get_tree().change_scene_to_file("res://scenes/screens/fled_screen.tscn");
 
 
 func death_sequence() -> void:
 	dead = true;
 	await get_tree().create_timer(2.0).timeout;
-	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
+	get_tree().change_scene_to_file("res://scenes/screens/death_screen.tscn");
 
 
 func victory_sequence() -> void:
 	player_node.walk();
 	await get_tree().create_timer(2.0).timeout;
-	get_tree().change_scene_to_file("res://scenes/town/town.tscn");
+	get_tree().change_scene_to_file("res://scenes/screens/victory_screen.tscn");
 
 
 func skill_used(skill: CharacterSkill) -> void:

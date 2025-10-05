@@ -90,3 +90,7 @@ func change_track(new_track: SoundID) -> void:
 	
 	np_tween.tween_property(new_player, ^"volume_linear", 1.0, TRANSITION_TIME);
 	new_player.play();
+
+
+func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS;

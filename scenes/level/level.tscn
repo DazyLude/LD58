@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://sk0jlu4umyxc"]
+[gd_scene load_steps=10 format=3 uid="uid://sk0jlu4umyxc"]
 
 [ext_resource type="Script" uid="uid://dmbnwr3qm0ypk" path="res://scenes/level/level.gd" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://dxj027x86hsda" path="res://scripts/battle_manager.gd" id="2_w8frs"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cmk8ofqo5ghf2" path="res://scenes/level/skill_display.tscn" id="5_hnne4"]
 [ext_resource type="Texture2D" uid="uid://8h3cnlx60v6e" path="res://assets/graphics/locations/3main.png" id="5_sytrn"]
 [ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="6_tf2q7"]
+[ext_resource type="PackedScene" uid="uid://b3hh01cwxn7s4" path="res://scenes/pause_menu.tscn" id="9_sytrn"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_2q6dc")
@@ -71,3 +72,6 @@ centered = false
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
+
+[node name="PauseMenu" parent="UI" instance=ExtResource("9_sytrn")]
+visible = false
