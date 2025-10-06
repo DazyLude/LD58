@@ -1,6 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bxsnxiwp7jwvh"]
+[gd_scene load_steps=9 format=3 uid="uid://bxsnxiwp7jwvh"]
 
 [ext_resource type="Script" uid="uid://cxuivjnqngx68" path="res://scenes/tutorial.gd" id="1_c13y7"]
+[ext_resource type="Texture2D" uid="uid://tebqjepujitc" path="res://assets/graphics/locations/1back.png" id="2_6yjpi"]
+[ext_resource type="Texture2D" uid="uid://cqxuer3nybowe" path="res://assets/graphics/locations/2grass.png" id="3_gbqnl"]
+[ext_resource type="Texture2D" uid="uid://8h3cnlx60v6e" path="res://assets/graphics/locations/3main.png" id="4_ckvwl"]
+[ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="5_nlqja"]
+[ext_resource type="Texture2D" uid="uid://1d6lnct4074c" path="res://assets/graphics/badly_cropped_capybara.png" id="6_0epgs"]
+[ext_resource type="Texture2D" uid="uid://d1trsotvtqjmr" path="res://assets/graphics/tutorial_screenshot_1.png" id="7_gbqnl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c13y7"]
 
@@ -12,11 +18,243 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c13y7")
-slides = [NodePath("Slide1")]
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide7")]
 
 [node name="Slide1" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide1"]
+texture = ExtResource("2_6yjpi")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide1"]
+texture = ExtResource("3_gbqnl")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Slide1"]
+texture = ExtResource("4_ckvwl")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Slide1"]
+texture = ExtResource("5_nlqja")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide1"]
+offset_left = 56.0
+offset_top = 45.0
+offset_right = 656.0
+offset_bottom = 335.0
+
+[node name="Label" type="Label" parent="Slide1/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Greeting traveller!
+My name is Sir Badly Cropped Capybara the Watermarked the Second.
+I'm here to guide you.
+Don't worry, I can be trusted!"
+horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Slide1"]
+position = Vector2(740, 412)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide2" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide2"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide2"]
+offset_left = 558.0
+offset_top = 299.0
+offset_right = 834.0
+offset_bottom = 408.0
+
+[node name="Label" type="Label" parent="Slide2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "At first, let's look at the game screen."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide2"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide3" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide3"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide3"]
+offset_left = 338.0
+offset_top = 80.0
+offset_right = 826.0
+offset_bottom = 196.0
+
+[node name="Label" type="Label" parent="Slide3/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You're playing as Sir Frogbert. Your health is displayed above you."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide3"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide4" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide4"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide4"]
+offset_left = 195.0
+offset_top = 81.0
+offset_right = 683.0
+offset_bottom = 375.0
+
+[node name="Label" type="Label" parent="Slide4/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your inventory contents are displayed at the top of the screen, alongside with the total weight.
+Fun things happen when you're carrying too much. Trust me!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide4"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide5" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide5"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide5"]
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 578.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Slide5/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Your skills are displayed on the left side of the screen. Skills can be activated by clicking them. "
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide5"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide6" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide6"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide6"]
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 578.0
+offset_bottom = 250.0
+
+[node name="Label" type="Label" parent="Slide6/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Some items, when carried, grant you a skill. A bomb, for example, allows you to throw it!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide6"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide7" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide7"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide7"]
+offset_left = 90.0
+offset_top = 78.0
+offset_right = 643.0
+offset_bottom = 254.0
+
+[node name="Label" type="Label" parent="Slide7/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You always have one skill available:
+\"Tactical Retreat\" they call it.
+Remember, to live is better than not to!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide7"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -49,8 +287,18 @@ layout_mode = 2
 text = "previous tutorial"
 
 [node name="Label" type="Label" parent="HBoxContainer"]
+z_index = 1
 layout_mode = 2
 text = "10/10"
+
+[node name="Panel" type="Panel" parent="HBoxContainer/Label"]
+z_as_relative = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="next" type="Button" parent="HBoxContainer"]
 layout_mode = 2
