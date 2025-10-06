@@ -16,6 +16,8 @@ func execute(user: Character, target: Character):
 	if cost > 0:
 		GameState.inventory.remove_item_by_name(associated_item, cost);
 		skill.execute(user, target);
+	else:
+		skill.execute(user, target);
 
 
 func can_be_used(context: Level) -> bool:

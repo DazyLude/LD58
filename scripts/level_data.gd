@@ -4,17 +4,22 @@ class_name LevelData
 static var rng = RandomNumberGenerator.new();
 
 var item_weights : Dictionary[String, float] = {};
-var item_distance := 300.0;
-var item_start_margin := 600.0;
+var item_distance := 600.0;
+var item_start_margin := 1200.0;
 var item_end_margin := 600.0;
 
 var enemy_weights : Dictionary[String, float] = {};
 var enemy_start_margin := 800.0;
 var enemy_end_margin := 1200.0;
-var enemy_distance := 1000.0;
+var enemy_distance := 1500.0;
 
-var boss_distance := 4000.0;
+var boss_distance := 6000.0;
 var boss := "frogbert";
+
+var required_progress : int = 0;
+var on_completion_progress : int = 1;
+
+var on_completion_reward : float = 20.0;
 
 var parallax_horizon : Texture2D = preload("res://assets/graphics/locations/1back.png");
 var parallax_horizon_width := 1896.0;

@@ -11,12 +11,13 @@ func _on_play_button_pressed() -> void:
 	GameState.inventory = InventoryManager.new();
 	GameState.cash = 0.0;
 	GameState.level = LevelsDB.forest;
+	GameState.progress = 0;
 	
 	get_tree().change_scene_to_file("res://scenes/level/level.tscn");
-	
-	
+
+
 func _on_tutorial_button_pressed() -> void:
-	pass
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn");
 
 
 func _on_music_toggle() -> void:

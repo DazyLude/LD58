@@ -3,6 +3,7 @@ class_name CharacterStats
 
 
 signal slain;
+signal blocked;
 
 
 var buff_table : Dictionary[String, Buff] = {};
@@ -39,14 +40,21 @@ var is_alive : bool :
 
 func take_damage(value: float) -> void:
 	if not blocking:
-		var damage = value / (armor / 60.0 + 1.0)
+		var damage = value / (armor / 70.0 + 1.0)
 		hp -= damage;
 		print("taken %s damage, current hp %s" % [damage, hp]);
 		if hp <= 0.0:
 			print("character slain");
 			slain.emit();
 	else:
+		blocked.emit()
 		print("blocked!");
+
+
+func heal_damage(value: float) -> void:
+	var old_hp = hp;
+	hp = move_toward(hp, max_hp, value);
+	print("healed by %s, current hp %s" % [hp - old_hp, hp]);
 
 
 func grant_buff(from: String, buff: Buff) -> void:

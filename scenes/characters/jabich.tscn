@@ -63,15 +63,15 @@ radius = 191.04189
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_vwthe")
-attack_speed_override = 0.5
-attack_override = 25.0
+attack_speed_override = 0.33
+attack_override = 45.0
 hp_override = 250.0
-boss_name = "Corrupted Sir Quacklet Collectoad"
 drop = "crystall_ball"
+boss_name = "Corrupted Sir Quacklet Collectoad"
 windup_sound = ExtResource("2_4dbua")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(6, -279)
+position = Vector2(6, -249)
 sprite_frames = SubResource("SpriteFrames_qp0oc")
 animation = &"walk"
 

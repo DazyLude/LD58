@@ -32,6 +32,7 @@ class Bomb extends CharacterItemSkill:
 		cost = 1;
 		icon = preload("res://assets/graphics/icons/bomb.png");
 	
+	
 	func execute(user: Character, target: Character):
 		var user_position = user.level_ref.get_player_scene_position() + user.target.position;
 		var target_position = target.position + target.target.position;
@@ -44,6 +45,8 @@ class Bomb extends CharacterItemSkill:
 			0.5,
 			min(target_position.y, user_position.y) - 50.0
 		)
+		
 		await user.get_tree().create_timer(0.5).timeout;
 		super.execute(user, target);
-		user.sfx_player.play_sound(preload("res://assets/sounds/sfx/bomb.wav"))
+		user.sfx_player.play_sound(preload("res://assets/sounds/sfx/bomb.wav"));
+		user.level_ref.update_item_related();

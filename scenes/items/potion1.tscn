@@ -14,7 +14,6 @@ item_official_name = "Potion of Speed"
 weight = 2.0
 cost = 45.0
 description = "Acid colored potion.
-Shouldn't cause an addiction, but its better to not overconsume.
 Can be consumed to increase attack speed temporary."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

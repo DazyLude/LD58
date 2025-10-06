@@ -23,18 +23,18 @@ func start_cooldown() -> void:
 	$ProgressBar.value = $ProgressBar.max_value;
 
 
-func set_skill(skill: CharacterSkill, character: Character, level: Level) -> void:
+func set_skill(skill: CharacterSkill, _character: Character, level: Level) -> void:
 	if skill_cache != skill:
 		skill_cache = skill;
 		self.icon = skill.icon;
 		$ProgressBar.min_value = 0.0;
-		$ProgressBar.max_value = skill.cooldown * character.stats.attack_speed;
+		$ProgressBar.max_value = skill.cooldown;
 		$ProgressBar.value = $ProgressBar.min_value;
 	
 	if level != level_cache:
 		level_cache = level;
 	
-	if skill is CharacterItemSkill:
+	if skill is CharacterItemSkill and skill.cost > 0:
 		$Label.show();
 		$Label.text = "%d" % GameState.inventory.get_item_count(skill.associated_item);
 	else:

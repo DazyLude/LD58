@@ -17,6 +17,8 @@ var usable_skills : Array[CharacterSkill] :
 
 var default_skills : Array[CharacterSkill] = [Flee.new()];
 var item_skills : Array[CharacterItemSkill] = [];
+var item_skill_cache : Dictionary[Script, CharacterItemSkill] = {};
+
 var item_buffs : Dictionary[String, RefCounted] = {};
 
 
@@ -24,6 +26,9 @@ var item_buffs : Dictionary[String, RefCounted] = {};
 var wind_up := 0.25;
 @export 
 var drop : String = "";
+
+@export
+var boss_name : String = "";
 
 
 @onready
@@ -47,6 +52,7 @@ var level_ref : Level = null;
 func _ready() -> void:
 	$Area2D.area_entered.connect(encounter.emit);
 	stats.slain.connect(on_death);
+	stats.blocked.connect(sfx_player.play_sound.bind(preload("res://assets/sounds/sfx/unsheath.ogg")))
 	hp_display.connect_character(self);
 
 
@@ -56,7 +62,9 @@ func update_item_skills() -> void:
 	for item in inventory.contents:
 		var skill := ItemsDB.get_item_skill(item);
 		if skill != null:
-			item_skills.push_back(skill.new());
+			item_skills.push_back(
+				item_skill_cache.get_or_add(skill, skill.new())
+			);
 
 
 func update_item_buffs() -> void:

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3hh01cwxn7s4"]
+[gd_scene load_steps=7 format=3 uid="uid://b3hh01cwxn7s4"]
 
 [ext_resource type="Texture2D" uid="uid://bbyoboyy756l3" path="res://assets/icons/music_off.svg" id="1_5d2l8"]
 [ext_resource type="Script" uid="uid://4m3k5j8fy8bg" path="res://scenes/pause_menu.gd" id="1_7l7mv"]
 [ext_resource type="Texture2D" uid="uid://cgeuk7resgh73" path="res://assets/icons/music_on.svg" id="2_7l7mv"]
 [ext_resource type="Texture2D" uid="uid://djgy2hjenbk6u" path="res://assets/icons/sound_off.svg" id="3_v4r4p"]
 [ext_resource type="Texture2D" uid="uid://buvpun6kie12t" path="res://assets/icons/sound_on.svg" id="4_1s2dm"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7l7mv"]
+bg_color = Color(0.039215688, 0.08627451, 0.05490196, 0.20784314)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -15,6 +18,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7l7mv")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7l7mv")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1

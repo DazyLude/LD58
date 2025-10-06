@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxsnxiwp7jwvh"]
+
+[ext_resource type="Script" uid="uid://cxuivjnqngx68" path="res://scenes/tutorial.gd" id="1_c13y7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c13y7"]
+
+[node name="Tutorial" type="Control" node_paths=PackedStringArray("slides")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c13y7")
+slides = [NodePath("Slide1")]
+
+[node name="Slide1" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide1"]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -58.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="back" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "back to the menu
+"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="prev" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "previous tutorial"
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "10/10"
+
+[node name="next" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "next tutorial
+"
+
+[node name="VSeparator4" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")

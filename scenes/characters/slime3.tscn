@@ -10,11 +10,12 @@ radius = 186.00269
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_fu064")
-attack_speed_override = 0.8
-attack_override = 20.0
+attack_speed_override = 0.7
+attack_override = 15.0
 hp_override = 150.0
-boss_name = "The Slimester"
+wind_up = 0.5
 drop = "slime"
+boss_name = "The Slimester"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-11, -136)

@@ -10,7 +10,9 @@ radius = 58.034473
 script = ExtResource("1_2mdld")
 item_name = "slime"
 item_official_name = "Slime"
-description = "Quite useless, gross and sticky.
+weight = 4.0
+cost = 5.0
+description = "Quite gross and sticky.
 Why did you pick it? Ew."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

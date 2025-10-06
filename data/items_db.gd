@@ -7,6 +7,9 @@ var items : Dictionary[String, PackedScene] = {};
 var item_skills : Dictionary[String, Script] = {
 	"shield": Block.Shield,
 	"bomb": FixedAttack.Bomb,
+	"potion_red": Heal.RedPotion,
+	"potion_green": TemporaryBuff.GreenPotion,
+	"potion_grey": TemporaryBuff.GreyPotion,
 }
 
 

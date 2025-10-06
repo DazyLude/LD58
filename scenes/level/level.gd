@@ -2,13 +2,11 @@ extends Node2D
 class_name Level
 
 
-const RUN_SPEED := 75.0;
+const RUN_SPEED := 210.0;
 const ITEM_DROP_INTERVAL := 0.5;
 
 
 var victory_screen_pckd : PackedScene = preload("res://scenes/screens/victory_screen.tscn");
-var fled_screen_pckd : PackedScene = preload("res://scenes/screens/fled_screen.tscn");
-var death_screen_pckd : PackedScene = preload("res://scenes/screens/death_screen.tscn");
 
 
 var frogbert_pckd : PackedScene = CharactersDB.get_character_scene("frogbert");
@@ -46,7 +44,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _ready() -> void:
-	GameState.inventory.add_item_by_name("bomb", 1);
+	$UI/PauseMenu.hide();
+	$UI/BossLabel.hide();
 	
 	BgmPlayer.change_track(BgmPlayer.SoundID.Music2);
 	GameState.player_stats.hp = GameState.player_stats.max_hp;
@@ -70,11 +69,11 @@ func _process(delta: float) -> void:
 	if in_battle:
 		pass;
 	elif fleeing:
-		player_node.position -= Vector2(RUN_SPEED * delta, 0.0);
+		player_node.position -= Vector2(RUN_SPEED * delta * player_node.stats.attack_speed, 0.0);
 	elif dead:
 		pass;
 	else:
-		player_root.position += Vector2(RUN_SPEED * delta, 0.0);
+		player_root.position += Vector2(RUN_SPEED * delta * player_node.stats.attack_speed, 0.0);
 
 
 func setup_backgrounds() -> void:
@@ -103,6 +102,7 @@ func spawn_enemies() -> void:
 func spawn_boss() -> void:
 	var boss = spawn_enemy(level_data.boss, level_data.boss_distance);
 	boss_node = boss;
+	$UI/BossLabel.text = boss_node.boss_name.capitalize();
 
 
 func spawn_enemy(enemy: String, at: float) -> Character:
@@ -199,7 +199,7 @@ func drop_item(item := GameState.inventory.drop_random_item(), from: Character =
 	else:
 		item_position = from.position;
 	
-	var item_x_speed := RUN_SPEED * (randf_range(-0.5, 3.0) - (1.0 if in_battle else 0.0));
+	var item_x_speed := RUN_SPEED * randf_range(-1.5, 1.5) / 2.0;
 	var item_y_peak := randf_range(120.0, 240.0);
 	var fall_time := 1.0;
 	var destination := Vector2(item_position.x + item_x_speed * fall_time, item_position.y);
@@ -210,7 +210,11 @@ func drop_item(item := GameState.inventory.drop_random_item(), from: Character =
 func throw_item(item: String, should_destroy: bool, from: Vector2, at: Vector2, time: float = 1.0, peak_y: float = min(from.y, at.y)) -> void:
 	var item_node := spawn_item(item, from.x, from.y);
 	var tween = create_tween();
+	tween.set_trans(Tween.TRANS_LINEAR);
 	tween.tween_property(item_node, ^"position:x", at.x, time);
+	var rotate_by := (1.0 if from.x < at.x else -1.0) * randf_range(0.33, 1.66)
+	tween.parallel().tween_property(item_node, ^"rotation", rotate_by, time);
+	
 	
 	var first_half = abs(peak_y - from.y);
 	var second_half = abs(peak_y - at.y)
@@ -235,6 +239,7 @@ func on_encounter(other_area: Area2D) -> void:
 func start_fight(one: Character, another: Character) -> void:
 	if another == boss_node:
 		BgmPlayer.change_track(BgmPlayer.SoundID.Battle2);
+		display_boss_name();
 	else:
 		BgmPlayer.change_track(BgmPlayer.SoundID.Battle1);
 	
@@ -269,22 +274,47 @@ func flee_sequence() -> void:
 		fleeing = true;
 		player_node.walk();
 		await get_tree().create_timer(4.0).timeout;
-		var new_screen := fled_screen_pckd.instantiate();
+		var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
+		new_screen.setup("FLED TO TOWN");
 		ui_container.add_child(new_screen);
 
 
 func death_sequence() -> void:
 	dead = true;
 	await get_tree().create_timer(2.0).timeout;
-	var new_screen := death_screen_pckd.instantiate();
+	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
+	new_screen.setup("YOU DIED", func(): GameState.inventory.contents.clear());
 	ui_container.add_child(new_screen);
 
 
 func victory_sequence() -> void:
 	player_node.walk();
+	hide_boss_name();
 	await get_tree().create_timer(2.0).timeout;
-	var new_screen := victory_screen_pckd.instantiate();
+	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
+	new_screen.setup("VICTORY ACHIEVED");
+	
+	GameState.progress = max(level_data.on_completion_progress, GameState.progress);
+	GameState.cash += level_data.on_completion_reward;
+	
 	ui_container.add_child(new_screen);
+
+
+func display_boss_name() -> void:
+	$UI/BossLabel.position = Vector2(get_viewport_rect().size.x / 2, $UI/BossLabel.position.y)
+	$UI/BossLabel.scale = Vector2(0.0, 0.0)
+	$UI/BossLabel.show();
+	var tween := create_tween();
+	tween.tween_property($UI/BossLabel, ^"scale", Vector2(1.0, 1.0), 0.75);
+	tween.parallel().tween_property($UI/BossLabel, ^"position:x", 0, 0.75);
+
+
+func hide_boss_name() -> void:
+	var tween := create_tween();
+	tween.tween_property($UI/BossLabel, ^"rotation", 0.08, 0.25);
+	tween.parallel().tween_property($UI/BossLabel, ^"position:y", 80, 0.25);
+	tween.tween_property($UI/BossLabel, ^"position:y", 1500.0, 0.25);
+	$UI/BossLabel.hide();
 
 
 func skill_used(skill: CharacterSkill) -> void:

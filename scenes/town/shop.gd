@@ -20,6 +20,26 @@ var sfxplayer : PolyphonicSfxPlayer = null;
 func _ready() -> void:
 	sfxplayer = PolyphonicSfxPlayer.new();
 	add_child(sfxplayer);
+	
+	shopkeep_inventory.add_item_by_name("shield", 1);
+	shopkeep_inventory.add_item_by_name("potion_red", 1);
+	shopkeep_inventory.add_item_by_name("bomb", 1);
+	
+	match GameState.progress:
+		0:
+			shopkeep_inventory.add_item_by_name("sword1", 1);
+			shopkeep_inventory.add_item_by_name("helmet1", 1);
+		1:
+			shopkeep_inventory.add_item_by_name("sword2", 1);
+			shopkeep_inventory.add_item_by_name("helmet2", 1);
+			shopkeep_inventory.add_item_by_name(["potion_grey", "potion_green"].pick_random(), 1);
+		2:
+			shopkeep_inventory.add_item_by_name("helmet3", 1);
+			shopkeep_inventory.add_item_by_name("sword3", 1);
+			shopkeep_inventory.add_item_by_name("bomb", 1);
+			shopkeep_inventory.add_item_by_name("potion_grey", 1);
+			shopkeep_inventory.add_item_by_name("potion_green", 1);
+			shopkeep_inventory.add_item_by_name("potion_red", 1);
 
 
 func update_all() -> void:

@@ -10,6 +10,7 @@ radius = 186.00269
 
 [node name="Character" type="Node2D"]
 script = ExtResource("1_wtppf")
+wind_up = 0.5
 drop = "slime"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

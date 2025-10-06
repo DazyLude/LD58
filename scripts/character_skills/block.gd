@@ -16,9 +16,9 @@ func execute(user: Character, target: Character):
 		return;
 	
 	target.stats.blocking = true;
-	var blocking_time = 0.2 * (1.0 + user.stats.attack_speed);
+	var blocking_time = 0.4;
 	var expire_timer = user.create_tween();
-	expire_timer.tween_interval(blocking_time)
+	expire_timer.tween_interval(blocking_time);
 	expire_timer.tween_callback(func(): target.stats.blocking = false);
 
 
@@ -27,6 +27,6 @@ class Shield extends CharacterItemSkill:
 		skill = Block.new();
 		targeting_strategy = TargetingStrategySelf.new();
 		associated_item = "shield";
-		cost = 1;
-		cooldown = 2.5;
+		cost = 0;
+		cooldown = 2.0;
 		icon = preload("res://assets/graphics/icons/shield.png")
