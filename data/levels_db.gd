@@ -33,20 +33,23 @@ func _init() -> void:
 	ruins.parallax_front = preload("res://assets/graphics/ruins/front.png")
 	ruins.parallax_front_width = 2844.0;
 	ruins.item_weights = {
-		"bone": 20.0,
+		"bone": 10.0,
 		"sword2": 20.0,
-		"sword3": 5.0,
+		"sword3": 2.0,
 		"helmet2": 20.0,
-		"helmet3": 5.0,
+		"helmet3": 2.0,
 		"crystal_ball": 4.0,
 		"holy_book": 4.0,
-		"bomb": 4.0,
+		"bomb": 6.0,
 	}
+	ruins.item_distance = 800.0;
+	
 	ruins.enemy_weights = {
 		"slime2": 60.0,
-		"slime3": 10.0,
+		"slime3": 20.0,
 	}
 	ruins.boss = "jabich";
 	ruins.required_progress = 1;
 	ruins.on_completion_progress = 2;
 	ruins.on_completion_reward = 100;
+	ruins.is_final_level = true;

@@ -15,7 +15,7 @@ func _ready() -> void:
 
 func previous_slide() -> void:
 	@warning_ignore("narrowing_conversion")
-	current_slide_idx = move_toward(current_slide_idx, 0, -1);
+	current_slide_idx = move_toward(current_slide_idx, 0, 1);
 	update_slide()
 
 

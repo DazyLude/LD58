@@ -84,6 +84,8 @@ func on_death() -> void:
 	slain.emit();
 	hp_display.hide();
 	self.rotation = PI / 2;
+	hitbox.monitorable = false;
+	hitbox.monitoring = false;
 
 
 func on_flight() -> void:

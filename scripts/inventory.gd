@@ -57,6 +57,9 @@ func add_item(item: Item, count: int = 1) -> void:
 
 
 func add_item_by_name(item: String, count: int = 1) -> void:
+	if not has_item_data_cached(item):
+		save_items_data_by_name(item);
+	
 	contents[item] = contents.get_or_add(item, 0) + count;
 
 
