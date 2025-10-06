@@ -273,7 +273,7 @@ func flee_sequence() -> void:
 	if not fleeing:
 		fleeing = true;
 		player_node.walk();
-		await get_tree().create_timer(4.0).timeout;
+		await get_tree().create_timer(4.0, false).timeout;
 		var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
 		new_screen.setup("FLED TO TOWN");
 		ui_container.add_child(new_screen);
@@ -281,7 +281,7 @@ func flee_sequence() -> void:
 
 func death_sequence() -> void:
 	dead = true;
-	await get_tree().create_timer(2.0).timeout;
+	await get_tree().create_timer(2.0, false).timeout;
 	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
 	new_screen.setup("YOU DIED", func(): GameState.inventory.contents.clear());
 	ui_container.add_child(new_screen);
@@ -290,7 +290,7 @@ func death_sequence() -> void:
 func victory_sequence() -> void:
 	player_node.walk();
 	hide_boss_name();
-	await get_tree().create_timer(2.0).timeout;
+	await get_tree().create_timer(2.0, false).timeout;
 	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
 	new_screen.setup("VICTORY ACHIEVED");
 	
