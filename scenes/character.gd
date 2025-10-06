@@ -89,6 +89,8 @@ func on_death() -> void:
 
 
 func on_flight() -> void:
+	hitbox.monitorable = false;
+	hitbox.monitoring = false;
 	self.scale.x *= -1;
 	hp_display.hide();
 	fled.emit();

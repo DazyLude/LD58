@@ -11,7 +11,7 @@ script = ExtResource("1_2mdld")
 item_name = "slime"
 item_official_name = "Slime"
 weight = 4.0
-cost = 5.0
+cost = 7.0
 description = "Quite gross and sticky.
 Why did you pick it? Ew."
 

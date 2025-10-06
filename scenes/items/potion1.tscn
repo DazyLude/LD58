@@ -12,7 +12,7 @@ script = ExtResource("1_x40yc")
 item_name = "potion_green"
 item_official_name = "Potion of Speed"
 weight = 2.0
-cost = 45.0
+cost = 35.0
 description = "Acid colored potion.
 Can be consumed to increase attack speed temporary."
 

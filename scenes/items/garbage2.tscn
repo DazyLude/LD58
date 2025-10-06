@@ -11,6 +11,7 @@ height = 141.48593
 script = ExtResource("1_gelpt")
 item_name = "bone"
 item_official_name = "Bone"
+cost = 3.0
 description = "You're travelling alone because otherwise you'd be picking a bone with them."
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

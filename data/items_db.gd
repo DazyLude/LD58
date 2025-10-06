@@ -2,7 +2,24 @@ extends Node
 class_name ItemsDBClass
 
 const ROOT := "res://scenes/items/";
-var items : Dictionary[String, PackedScene] = {};
+var items : Dictionary[String, PackedScene] = {
+	"placeholder": preload("res://scenes/items/concrete_item.tscn"),
+	"slime": preload("res://scenes/items/garbage1.tscn"),
+	"bone": preload("res://scenes/items/garbage2.tscn"),
+	"helmet1": preload("res://scenes/items/helmet_old.tscn"),
+	"helmet2": preload("res://scenes/items/helmet_normal.tscn"),
+	"helmet3": preload("res://scenes/items/helmet_good.tscn"),
+	"potion_green": preload("res://scenes/items/potion1.tscn"),
+	"potion_grey": preload("res://scenes/items/potion2.tscn"),
+	"potion_red": preload("res://scenes/items/potion3.tscn"),
+	"shield": preload("res://scenes/items/shield.tscn"),
+	"sword1": preload("res://scenes/items/sword_old.tscn"),
+	"sword2": preload("res://scenes/items/sword_normal.tscn"),
+	"sword3": preload("res://scenes/items/sword_good.tscn"),
+	"crystal_ball": preload("res://scenes/items/treasure1.tscn"),
+	"holy_book": preload("res://scenes/items/treasure2.tscn"),
+	"bomb": preload("res://scenes/items/treasure3.tscn"),
+};
 
 var item_skills : Dictionary[String, Script] = {
 	"shield": Block.Shield,
@@ -27,15 +44,15 @@ var item_buffs : Array[BuffItemGroup] = [
 ]
 
 
-func _init() -> void:
-	for file in DirAccess.get_files_at(ROOT):
-		var path = ROOT.path_join(file);
-		if ResourceLoader.exists(path):
-			var resource := load(path);
-			if resource is PackedScene:
-				var instance = resource.instantiate();
-				if instance is Item:
-					items[instance.item_name] = resource;
+#func _init() -> void:
+	#for file in DirAccess.get_files_at(ROOT):
+		#var path = ROOT.path_join(file);
+		#if ResourceLoader.exists(path):
+			#var resource := load(path);
+			#if resource is PackedScene:
+				#var instance = resource.instantiate();
+				#if instance is Item:
+					#items[instance.item_name] = resource;
 
 
 func get_item(item: String) -> PackedScene:

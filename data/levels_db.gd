@@ -8,14 +8,14 @@ var ruins := LevelData.new();
 
 func _init() -> void:
 	forest.item_weights = {
-		"bone": 50.0,
-		"sword1": 20.0,
-		"sword2": 1.0,
-		"helmet1": 20.0,
-		"helmet2": 1.0,
+		"sword1": 18.0,
+		"sword2": 2.0,
+		"helmet1": 18.0,
+		"helmet2": 2.0,
+		"bone": 45.0,
 		"crystal_ball": 3.0,
 		"holy_book": 3.0,
-		"bomb": 3.0,
+		"bomb": 2.0,
 	}
 	forest.enemy_weights = {
 		"slime1": 60.0,
@@ -33,13 +33,13 @@ func _init() -> void:
 	ruins.parallax_front = preload("res://assets/graphics/ruins/front.png")
 	ruins.parallax_front_width = 2844.0;
 	ruins.item_weights = {
-		"bone": 10.0,
-		"sword2": 20.0,
+		"sword2": 18.0,
 		"sword3": 2.0,
-		"helmet2": 20.0,
+		"helmet2": 18.0,
 		"helmet3": 2.0,
-		"crystal_ball": 4.0,
-		"holy_book": 4.0,
+		"bone": 35.0,
+		"crystal_ball": 8.0,
+		"holy_book": 8.0,
 		"bomb": 6.0,
 	}
 	ruins.item_distance = 800.0;

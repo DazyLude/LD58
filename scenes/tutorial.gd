@@ -29,7 +29,7 @@ func update_slide() -> void:
 	for slide in slides:
 		slide.hide();
 	
-	$HBoxContainer/Label.text = "%d / %d" % [current_slide_idx + 1, slides.size()]
+	$HBoxContainer/Panel/Label.text = "%d / %d" % [current_slide_idx + 1, slides.size()]
 	slides[current_slide_idx].show();
 
 

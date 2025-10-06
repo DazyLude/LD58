@@ -2,7 +2,7 @@ extends Node2D
 class_name Level
 
 
-const RUN_SPEED := 210.0;
+const RUN_SPEED := 270.0;
 const ITEM_DROP_INTERVAL := 0.5;
 
 
@@ -137,6 +137,8 @@ func spawn_items() -> void:
 
 
 func spawn_item(item: String, x: float, y: float = 400.0) -> Item:
+	print("spawning an item: %s, at %s" % [item, Vector2(x, y)]);
+	
 	var item_node : Item = ItemsDB.get_item(item).instantiate();
 	item_node.position = Vector2(x, y);
 	$Items.add_child(item_node);

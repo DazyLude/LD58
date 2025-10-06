@@ -12,7 +12,7 @@ script = ExtResource("1_u284x")
 item_name = "potion_grey"
 item_official_name = "Concoction of Stone"
 weight = 2.0
-cost = 45.0
+cost = 35.0
 description = "A mixture with a color of stone.
 Tastier than a rock.
 Can be consumed to increase resistances temporary."

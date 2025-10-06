@@ -12,7 +12,7 @@ script = ExtResource("1_ni1gw")
 item_name = "potion_red"
 item_official_name = "Healing Mix"
 weight = 2.0
-cost = 45.0
+cost = 35.0
 description = "A potion with a color of blood.
 I wonder if it works the same for the blue-blooded frogs.
 Can be consumed for some healing."
