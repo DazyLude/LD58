@@ -273,7 +273,7 @@ func flee_sequence() -> void:
 	if not fleeing:
 		fleeing = true;
 		player_node.walk();
-		await get_tree().create_timer(4.0).timeout;
+		await get_tree().create_timer(4.0, false).timeout;
 		var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
 		new_screen.setup("RETURNED TO TOWN");
 		ui_container.add_child(new_screen);
@@ -281,7 +281,7 @@ func flee_sequence() -> void:
 
 func death_sequence() -> void:
 	dead = true;
-	await get_tree().create_timer(2.0).timeout;
+	await get_tree().create_timer(2.0, false).timeout;
 	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
 	new_screen.setup("YOU DIED", GameState.death_reset);
 	ui_container.add_child(new_screen);
@@ -290,7 +290,8 @@ func death_sequence() -> void:
 func victory_sequence() -> void:
 	player_node.walk();
 	hide_boss_name();
-	await get_tree().create_timer(2.0).timeout;
+	await get_tree().create_timer(2.0, false).timeout;
+  
 	GameState.progress = max(level_data.on_completion_progress, GameState.progress);
 	GameState.cash += level_data.on_completion_reward;
 	
