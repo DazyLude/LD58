@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxsnxiwp7jwvh"]
+[gd_scene load_steps=14 format=3 uid="uid://bxsnxiwp7jwvh"]
 
 [ext_resource type="Script" uid="uid://cxuivjnqngx68" path="res://scenes/tutorial.gd" id="1_c13y7"]
 [ext_resource type="Texture2D" uid="uid://tebqjepujitc" path="res://assets/graphics/locations/1back.png" id="2_6yjpi"]
@@ -7,6 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="5_nlqja"]
 [ext_resource type="Texture2D" uid="uid://1d6lnct4074c" path="res://assets/graphics/badly_cropped_capybara.png" id="6_0epgs"]
 [ext_resource type="Texture2D" uid="uid://d1trsotvtqjmr" path="res://assets/graphics/tutorial_screenshot_1.png" id="7_gbqnl"]
+[ext_resource type="Texture2D" uid="uid://bu3mxcrvffh1e" path="res://assets/graphics/tutorial_screenshot_2.png" id="8_0epgs"]
+[ext_resource type="Texture2D" uid="uid://b231ot8wgyc3i" path="res://assets/graphics/tutorial_screenshot_3.png" id="9_g2equ"]
+[ext_resource type="Texture2D" uid="uid://bs8sn5vfqqym8" path="res://assets/graphics/tutorial_screenshot_5.png" id="10_tbcdj"]
+[ext_resource type="Texture2D" uid="uid://c80m1da2pni2m" path="res://assets/graphics/tutorial_screenshot_6.png" id="11_g2equ"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ej4tf"]
+bg_color = Color(0.08158616, 0.14708722, 0.10529829, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c13y7"]
 
@@ -18,7 +25,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_c13y7")
-slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide7")]
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6"), NodePath("Slide6_1"), NodePath("Slide6_2"), NodePath("Slide7"), NodePath("Slide8"), NodePath("Slide9"), NodePath("Slide10"), NodePath("Slide11"), NodePath("Slide12"), NodePath("Slide13")]
 
 [node name="Slide1" type="Node2D" parent="."]
 visible = false
@@ -223,7 +230,72 @@ position = Vector2(880, 445)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("6_0epgs")
 
+[node name="Slide6_1" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide6_1"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide6_1"]
+offset_left = 174.0
+offset_top = 79.0
+offset_right = 662.0
+offset_bottom = 310.0
+
+[node name="Label" type="Label" parent="Slide6_1/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Other items (like helmets and swords) boost your characteristics. Only one item of the highest quality grants its effects per category."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide6_1"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide6_2" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide6_2"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide6_2"]
+offset_left = 174.0
+offset_top = 79.0
+offset_right = 760.0
+offset_bottom = 144.0
+
+[node name="Label" type="Label" parent="Slide6_2/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "And some items are there just to be sold."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide6_2"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
 [node name="Slide7" type="Node2D" parent="."]
+visible = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Slide7"]
 texture = ExtResource("7_gbqnl")
@@ -254,6 +326,230 @@ autowrap_mode = 3
 [node name="Sprite2D" type="Sprite2D" parent="Slide7"]
 position = Vector2(880, 445)
 scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide8" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide8"]
+texture = ExtResource("7_gbqnl")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide8"]
+offset_left = 12.0
+offset_top = 94.0
+offset_right = 565.0
+offset_bottom = 270.0
+
+[node name="Label" type="Label" parent="Slide8/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "When you're fighting, your enemy is displayed on the right. Enemies die when out of HP, just like you!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide8"]
+position = Vector2(880, 445)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide9" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide9"]
+texture = ExtResource("8_0epgs")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide9"]
+offset_left = 388.0
+offset_top = 219.0
+offset_right = 941.0
+offset_bottom = 335.0
+
+[node name="Label" type="Label" parent="Slide9/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Items, like this helmet next to me, can be picked up by clicking on them."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide9"]
+position = Vector2(802, 423)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Slide10" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide10"]
+scale = Vector2(1.0204521, 1.0389863)
+texture = ExtResource("9_g2equ")
+centered = false
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide10"]
+position = Vector2(155, 199.00003)
+rotation = -0.43785253
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Panel" type="Panel" parent="Slide10"]
+offset_left = 85.0
+offset_top = 214.0
+offset_right = 638.0
+offset_bottom = 439.0
+
+[node name="Label" type="Label" parent="Slide10/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Shield grants you the the \"Block\" ability. Correctly timing it allows you to negate incoming damage completely!
+Consider buying one from my uncle."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Slide11" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide11"]
+scale = Vector2(1.0204521, 1.0389863)
+texture = ExtResource("10_tbcdj")
+centered = false
+
+[node name="Panel2" type="Panel" parent="Slide11"]
+offset_left = 417.0
+offset_top = -5.0
+offset_right = 991.0
+offset_bottom = 560.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ej4tf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide11"]
+position = Vector2(532, 449)
+rotation = 0.22571655
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Panel" type="Panel" parent="Slide11"]
+offset_left = 425.0
+offset_top = 140.0
+offset_right = 930.0
+offset_bottom = 365.0
+
+[node name="Label" type="Label" parent="Slide11/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Speaking about him, here is his shop.
+You can buy and sell items by clicking on them, and hovering above an item gives you some info about it."
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Slide12" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide12"]
+scale = Vector2(1.0204521, 1.0389863)
+texture = ExtResource("11_g2equ")
+centered = false
+
+[node name="Panel2" type="Panel" parent="Slide12"]
+offset_left = -33.0
+offset_top = 437.0
+offset_right = 987.0
+offset_bottom = 554.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_ej4tf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide12"]
+position = Vector2(439, 444)
+rotation = -0.08265056
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("6_0epgs")
+
+[node name="Panel" type="Panel" parent="Slide12"]
+offset_top = 41.0
+offset_right = 355.0
+offset_bottom = 454.0
+
+[node name="Label" type="Label" parent="Slide12/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Last but not least, after visiting the shop, you need to select a mission. Mission select shows its boss and the reward for its slaying. Slaying the boss unlocks the next mission!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Slide13" type="Node2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="Slide13"]
+texture = ExtResource("2_6yjpi")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Slide13"]
+texture = ExtResource("3_gbqnl")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Slide13"]
+texture = ExtResource("4_ckvwl")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Slide13"]
+texture = ExtResource("5_nlqja")
+centered = false
+
+[node name="Panel" type="Panel" parent="Slide13"]
+offset_left = 24.0
+offset_top = 108.0
+offset_right = 624.0
+offset_bottom = 281.0
+
+[node name="Label" type="Label" parent="Slide13/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "That's it!
+To play the game, return to the menu.
+Good luck!"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Slide13"]
+position = Vector2(740, 412)
 texture = ExtResource("6_0epgs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
