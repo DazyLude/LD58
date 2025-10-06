@@ -275,7 +275,7 @@ func flee_sequence() -> void:
 		player_node.walk();
 		await get_tree().create_timer(4.0).timeout;
 		var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
-		new_screen.setup("FLED TO TOWN");
+		new_screen.setup("RETURNED TO TOWN");
 		ui_container.add_child(new_screen);
 
 
@@ -283,7 +283,7 @@ func death_sequence() -> void:
 	dead = true;
 	await get_tree().create_timer(2.0).timeout;
 	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
-	new_screen.setup("YOU DIED", func(): GameState.inventory.contents.clear());
+	new_screen.setup("YOU DIED", GameState.death_reset);
 	ui_container.add_child(new_screen);
 
 
@@ -291,17 +291,20 @@ func victory_sequence() -> void:
 	player_node.walk();
 	hide_boss_name();
 	await get_tree().create_timer(2.0).timeout;
-	var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
-	new_screen.setup("VICTORY ACHIEVED");
-	
 	GameState.progress = max(level_data.on_completion_progress, GameState.progress);
 	GameState.cash += level_data.on_completion_reward;
 	
-	ui_container.add_child(new_screen);
+	if level_data.is_final_level and not GameState.ending_seen:
+		GameState.ending_seen = true;
+		get_tree().change_scene_to_file("res://scenes/ending.tscn");
+	else:
+		var new_screen : VictoryScreen = victory_screen_pckd.instantiate();
+		new_screen.setup("VICTORY ACHIEVED");
+		ui_container.add_child(new_screen);
 
 
 func display_boss_name() -> void:
-	$UI/BossLabel.position = Vector2(get_viewport_rect().size.x / 2, $UI/BossLabel.position.y)
+	$UI/BossLabel.position = Vector2(get_viewport_rect().size.x / 3, $UI/BossLabel.position.y)
 	$UI/BossLabel.scale = Vector2(0.0, 0.0)
 	$UI/BossLabel.show();
 	var tween := create_tween();

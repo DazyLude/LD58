@@ -20,6 +20,7 @@ var required_progress : int = 0;
 var on_completion_progress : int = 1;
 
 var on_completion_reward : float = 20.0;
+var is_final_level : bool = false;
 
 var parallax_horizon : Texture2D = preload("res://assets/graphics/locations/1back.png");
 var parallax_horizon_width := 1896.0;

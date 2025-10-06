@@ -7,12 +7,7 @@ var EffectsBusIndex: int = AudioServer.get_bus_index("Effects");
 
 
 func _on_play_button_pressed() -> void:
-	GameState.player_stats = PlayerStats.new();
-	GameState.inventory = InventoryManager.new();
-	GameState.cash = 0.0;
-	GameState.level = LevelsDB.forest;
-	GameState.progress = 0;
-	
+	GameState.full_reset();
 	get_tree().change_scene_to_file("res://scenes/level/level.tscn");
 
 

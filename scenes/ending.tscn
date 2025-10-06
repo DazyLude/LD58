@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5lqfn0squ755"]
+
+[ext_resource type="Script" uid="uid://5kpq5gmjtj54" path="res://scenes/ending.gd" id="1_qa3ag"]
+[ext_resource type="Texture2D" uid="uid://tebqjepujitc" path="res://assets/graphics/locations/1back.png" id="2_jc8es"]
+[ext_resource type="Texture2D" uid="uid://cqxuer3nybowe" path="res://assets/graphics/locations/2grass.png" id="3_1snb8"]
+[ext_resource type="Texture2D" uid="uid://8h3cnlx60v6e" path="res://assets/graphics/locations/3main.png" id="4_7g6bj"]
+[ext_resource type="Texture2D" uid="uid://ddpnp33vintvf" path="res://assets/graphics/locations/4front.png" id="5_vlhxo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c13y7"]
+
+[node name="Ending" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qa3ag")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+texture = ExtResource("2_jc8es")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="."]
+texture = ExtResource("3_1snb8")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="."]
+texture = ExtResource("4_7g6bj")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="."]
+texture = ExtResource("5_vlhxo")
+centered = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -98.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="VSeparator5" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="prev" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "exit to the menu"
+
+[node name="VSeparator3" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="next" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "continue playing
+"
+
+[node name="VSeparator4" type="VSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_c13y7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 67.0
+offset_right = 830.0
+offset_bottom = 357.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "With Sir Quacklet Collectoad dead, the lands can finally breathe freely again!
+At least, until the next Capybara revolt. Again.
+
+Thanks for playing!"
+horizontal_alignment = 1
+autowrap_mode = 3
