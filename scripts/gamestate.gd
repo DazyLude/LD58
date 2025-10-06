@@ -19,9 +19,6 @@ func full_reset() -> void:
 	level = LevelsDB.forest;
 	progress = 0;
 	ending_seen = false;
-	
-	inventory.add_item_by_name("sword3", 1);
-	inventory.add_item_by_name("helmet3", 1);
 
 
 func death_reset() -> void:
